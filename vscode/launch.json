@@ -3,18 +3,20 @@
 	// Hover to view descriptions of existing attributes.
 	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 
+	// roi - the sampls of launch.json and tasks.json are here:
+	// https://code.visualstudio.com/docs/cpp/config-clang-mac 
 "version": "0.2.0",
 "configurations": [
 	{
-		"name": "Debug",
+		"name": "C/C++: clang++ build and debug active file",
 		"type": "cppdbg",
 		"request": "launch",
 		"MIMode": "lldb",
 		"program": "${workspaceFolder}/${fileBasenameNoExtension}",
 		// "args": ["arg1", "arg2"],
-		"args": ["1 3 2"],
+		"args": ["1 3 2 l"],
 		"cwd": "${workspaceFolder}",
-		// "stopAtEntry": false,
+		"stopAtEntry": false,
 		"externalConsole": false,
 		"preLaunchTask": "C/C++: clang build active file"
 	}
