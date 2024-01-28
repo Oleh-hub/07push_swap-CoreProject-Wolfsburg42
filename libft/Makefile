@@ -35,8 +35,9 @@ SRCS		:=	ft_isalpha.c			\
 				ft_split.c				\
 				ft_substr.c				\
 				ft_putnbr_fd.c 			\
+				ft_atol.c				\
 				$(DIR_PRINTF)ft_printf.c\
-				$(DIR_PRINTF)upxx_out.c
+				$(DIR_PRINTF)upxx_out.c	
 				
 SRCS_BONUS	:=	ft_lstnew.c				\
 				ft_lstadd_front.c		\
