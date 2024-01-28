@@ -39,5 +39,5 @@ void 	free_stack(t_stack *a);
 void	error_exit(t_stack **a);
 bool	issorted(t_stack *stack);
 size_t	stack_size(t_stack *a);
-void swap(t_stack *a);
+void swap(t_stack **a);
 #endif

@@ -12,21 +12,31 @@
 
 #include "push_swap.h"
 
-void swap(t_stack *a)
+void swap(t_stack **a)
 {
-	if (!(a && a->next))
+	if (!(*a && (*a)->next))
 	{
 		ft_printf("a or a->next == NULL\n"); //
 		return ;
 	}
-	ft_printf("	a = %p\n", a);
-	ft_printf("a->prev = %p\n", a->previous);
-	ft_printf("a->next = %p\n", a->next);
-	a = a->next;
-	ft_printf("	a = %p\n", a);
-	ft_printf("a->prev = %p\n", a->previous);
-	ft_printf("a->next = %p\n", a->next);
-	error_exit(&a);
+	ft_printf("	a = %p\n", *a);
+	ft_printf("a->number = %i\n", (*a)->number);
+	ft_printf("a->prev = %p\n", (*a)->previous);
+	ft_printf("a->next = %p\n", (*a)->next);
+	*a = (*a)->next;
+	(*a)->previous->previous = *a;
+	(*a)->previous->next = (*a)->next;
+	if ((*a)->next)
+		(*a)->next->previous = (*a)->previous;
+	(*a)->next = (*a)->previous;
+	(*a)->previous = NULL;
+	ft_printf("	a = %p\n", *a);
+	ft_printf("a->number = %i\n", (*a)->number);
+	ft_printf("a->prev = %p\n", (*a)->previous);
+	ft_printf("a->next = %p\n", (*a)->next);
+	ft_printf("a->next->number = %i\n", (*a)->next->number);
+	ft_printf("a->next->prev = %p\n", (*a)->next->previous);
+	ft_printf("a->next->next = %p\n", (*a)->next->next);
 }
 
 size_t	stack_size(t_stack *a)

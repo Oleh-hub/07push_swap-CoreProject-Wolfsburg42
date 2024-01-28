@@ -99,7 +99,8 @@ unsigned int	hex_out(char x, va_list ap)
 	{
 		ul = va_arg(ap, unsigned long);
 		i = write(1, "0x", 2);
-		if (i < 0)
+		/* if (i < 0) */
+		if ((int) i < 0)
 			return (i);
 		i += p_out(ul, 1, x);
 	}

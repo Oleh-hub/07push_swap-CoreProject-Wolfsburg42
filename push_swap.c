@@ -122,8 +122,9 @@ int	main(int ac, char **av)
 		// ft_printf("%i\n", (int) size);	//
 		if (2 == size)
 		{
-			swap(a);	
+			swap(&a);	
 			ft_printf("sa\n");
+			ft_printf("	a = %p\n", a);
 		}
 	}
 	else
