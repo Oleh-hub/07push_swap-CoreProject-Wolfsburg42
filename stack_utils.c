@@ -6,13 +6,27 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 10:48:49 by oruban            #+#    #+#             */
-/*   Updated: 2024/01/28 11:38:14 by oruban           ###   ########.fr       */
+/*   Updated: 2024/01/29 19:04:47 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void swap(t_stack **a)
+// swaps the first 2 elements of the stack given as  t_stack **a
+void	swap(t_stack **a)
+{
+	if (!(*a && (*a)->next))
+		return ;
+	*a = (*a)->next;
+	(*a)->previous->previous = *a;
+	(*a)->previous->next = (*a)->next;
+	if ((*a)->next)
+		(*a)->next->previous = (*a)->previous;
+	(*a)->next = (*a)->previous;
+	(*a)->previous = NULL;
+}
+
+/* void swap(t_stack **a)
 {
 	if (!(*a && (*a)->next))
 	{
@@ -37,7 +51,7 @@ void swap(t_stack **a)
 	ft_printf("a->next->number = %i\n", (*a)->next->number);
 	ft_printf("a->next->prev = %p\n", (*a)->next->previous);
 	ft_printf("a->next->next = %p\n", (*a)->next->next);
-}
+} */
 
 size_t	stack_size(t_stack *a)
 {
@@ -52,17 +66,17 @@ size_t	stack_size(t_stack *a)
 	return (i);
 }
 
-void	free_stack(t_stack *a)
+void	free_stack(t_stack **a)
 {
 	t_stack	*tmp_node;
 
-	while (a)
+	while (*a)
 	{
-		tmp_node = a;
-		a = tmp_node->next;
+		tmp_node = *a;
+		*a = tmp_node->next;
 		free(tmp_node);
 	}
-	a = NULL;
+	*a = NULL;
 }
 
 /* fees memory allocated for the stack and
@@ -71,7 +85,7 @@ void	free_stack(t_stack *a)
 	RETURNS: 	nothing*/
 void	error_exit(t_stack **a)
 {
-	free_stack(*a);
+	free_stack(a);
 	ft_printf("Error\n");
 	exit(1);
 }

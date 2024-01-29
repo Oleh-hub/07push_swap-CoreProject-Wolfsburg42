@@ -6,12 +6,27 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:32:55 by oruban            #+#    #+#             */
-/*   Updated: 2024/01/28 10:52:44 by oruban           ###   ########.fr       */
+/*   Updated: 2024/01/29 13:54:40 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+
+static void	sort_stack(t_stack **a)
+{
+	size_t		size;
+
+	size = 0;
+	size = stack_size(*a);
+	if (2 == size)
+	{
+		swap(a);
+		ft_printf("sa\n");
+	}
+	if (3 == size)
+		sort_stack_of3(a);
+}
 
 static void	addnew_stacknode(t_stack **a, int nbr)
 {
@@ -99,12 +114,9 @@ int	main(int ac, char **av)
 {
 	char		**chr_nbr;
 	t_stack		*a;
-	// t_stack		*tmp;	//
-	size_t		size;
 
 	chr_nbr = NULL;
 	a = NULL;
-	size = 0;
 	if (1 == ac || (2 == ac && !av[1][0]))
 		return (1);
 	if (2 == ac)
@@ -117,18 +129,11 @@ int	main(int ac, char **av)
 	else
 		init_stack_a(&a, &av[1]);
 	if (!issorted(a))
-	{
-		size = stack_size(a);
-		// ft_printf("%i\n", (int) size);	//
-		if (2 == size)
-		{
-			swap(&a);	
-			ft_printf("sa\n");
-			ft_printf("	a = %p\n", a);
-		}
-	}
+		sort_stack(&a);
 	else
 		ft_printf("stack is sorted!\n");	//
+	free_stack(&a);
+}
 	// {	// tracing the stack initiation
 	// 	ft_printf("checking the stack initiation: \n");
 	// 	ft_printf("%p\n", a);
@@ -141,8 +146,6 @@ int	main(int ac, char **av)
 	// 	ft_printf(" \n");
 	// 	ft_printf("%p\n", a);
 	// }
-	free_stack(a);
-}
-/* ft_atoi recoded for long int. Since any number that are beyand the limits of 
+/* ft_atoi recoded for long int. Since any number that are beyand the limits of  
 LONG_MIN and LONG_MAX will be false converted into long time. We do not care 
 because if the requried int will be always correctly converted */ 

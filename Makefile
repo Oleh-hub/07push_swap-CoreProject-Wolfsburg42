@@ -1,7 +1,9 @@
 NAME 		:= push_swap
 CFLAGS 		:= -Wall -Wextra -Werror
 SRCS 		:=	push_swap.c		\
-				stack_utils.c
+				stack_utils.c	\
+				sort_utils.c
+
 OBJS 		:= $(SRCS:.c=.o)
 LIB_PATH 	:= libft/
 LIB 		:= $(LIB_PATH)libft.a

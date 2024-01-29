@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:39:53 by oruban            #+#    #+#             */
-/*   Updated: 2024/01/28 11:29:43 by oruban           ###   ########.fr       */
+/*   Updated: 2024/01/29 13:48:34 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ If the nearest is not found: target_node is the max and the min accodingly
 ===
 above_median - if a target_node is above median "rotate" ra or rb should be
 executed, if not - "reverse rotate" rra or rrb*/
-void 	free_stack(t_stack *a);
+void 	free_stack(t_stack **a);
 void	error_exit(t_stack **a);
 bool	issorted(t_stack *stack);
 size_t	stack_size(t_stack *a);
 void swap(t_stack **a);
+void sort_stack_of3(t_stack **a);
 #endif
