@@ -52,7 +52,7 @@ void rotate(t_stack **a)
 	last->next = *a;
 	(*a)->previous = last;
 	*a = (*a)->next;
-	//(*a)->next->previous = NULL; 
+	last->next->previous = last; // last edit
 	// last->next = NULL;
 	(*a)->previous = NULL;
 	{	//tracing
