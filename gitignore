@@ -1,0 +1,30 @@
+# System files
+.DS_Store
+
+# Object files
+*.o
+
+# Libraries
+*.lib
+*.a
+
+# Executables
+*.out
+
+# Debug files
+*.dSYM
+
+# VS Code directory
+.vscode/
+
+#Others
+.gitignore
+.vscode
+/tmp/
+*.txt
+# *.
+push_swap
+.*
+main*
+*.pdf
+checker_Mac
