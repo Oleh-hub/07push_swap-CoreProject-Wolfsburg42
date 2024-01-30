@@ -66,32 +66,30 @@ void rotate(t_stack **a)
 	}
 }
 
-void rrotate(t_stack **a)
+void rrotate(t_stack **head)
 {
 	t_stack	*last;
 	
-	last = find_last(*a);
+	last = find_last(*head);
 	ft_printf("%d\n", last);
-	if (!(*a && (*a)->next))
+	if (!(*head && (*head)->next))
 		return ;
 	{	//tracing
-		tracing_t_stack_node(*a, "a");
-		tracing_t_stack_node((*a)->next, "b");
-		tracing_t_stack_node((*a)->next->next, "c");
+		tracing_t_stack_node(*head, "a");
+		tracing_t_stack_node((*head)->next, "b");
+		tracing_t_stack_node((*head)->next->next, "c");
 	}
-	last->next = *a;
-	(*a)->previous = last;
-	*a = (*a)->next;
-/* 	ft_printf("last->next->previous = %p\n", last->next->previous);
-	last->next->previous = last; // last edit
-	ft_printf("last->next->previous = %p\n", last->next->previous); */
-	last->next->next = NULL;
-	(*a)->previous = NULL;
+	last->next = *head;
+	(*head)->previous = last;
+	// ft_printf("b4 Segmentation fault\n");
+	last->previous->next = NULL;
+	last->previous = NULL;
+	*head = last;
 	{	//tracing
 		ft_printf("=====after rotate()=======\n");
-		tracing_t_stack_node(*a, "a");
-		tracing_t_stack_node((*a)->next, "b");
-		tracing_t_stack_node((*a)->next->next, "c");
+		tracing_t_stack_node(*head, "a");
+		tracing_t_stack_node((*head)->next, "b");
+		tracing_t_stack_node((*head)->next->next, "c");
 		/* tracing_t_stack_node(last, "last"); */
 	}
 }
