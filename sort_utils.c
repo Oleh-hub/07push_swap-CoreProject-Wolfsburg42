@@ -52,15 +52,17 @@ void rotate(t_stack **a)
 	last->next = *a;
 	(*a)->previous = last;
 	*a = (*a)->next;
+/* 	ft_printf("last->next->previous = %p\n", last->next->previous);
 	last->next->previous = last; // last edit
-	// last->next = NULL;
+	ft_printf("last->next->previous = %p\n", last->next->previous); */
+	last->next->next = NULL;
 	(*a)->previous = NULL;
 	{	//tracing
 		ft_printf("=====after rotate()=======\n");
 		tracing_t_stack_node(*a, "a");
 		tracing_t_stack_node((*a)->next, "b");
 		tracing_t_stack_node((*a)->next->next, "c");
-		tracing_t_stack_node(last, "last");
+		/* tracing_t_stack_node(last, "last"); */
 	}
 	
 }
