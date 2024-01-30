@@ -64,7 +64,6 @@ void rotate(t_stack **a)
 		tracing_t_stack_node((*a)->next->next, "c");
 		/* tracing_t_stack_node(last, "last"); */
 	}
-	
 }
 
 t_stack *find_max(t_stack *a)
@@ -93,6 +92,13 @@ void sort_stack_of3(t_stack **a)
 	ft_printf("%i\n", max->number);
 	ft_printf("%p\n", max);
 	if (max == *a)
+	{
 		rotate(a);
-	ft_printf("ra\n");
+		ft_printf("ra\n");
+	}
+	else if (max == a->next)
+	{
+		rrotate(a);
+		ft_printf("rra\n");
+	}
 }
