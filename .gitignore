@@ -1,3 +1,5 @@
 *.o
 push_swap
-*.dSY
+*.dSYM
+tmp/Erik*
+tmp/eceano
