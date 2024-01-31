@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:39:53 by oruban            #+#    #+#             */
-/*   Updated: 2024/01/29 13:48:34 by oruban           ###   ########.fr       */
+/*   Updated: 2024/01/31 09:52:00 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void 	free_stack(t_stack **a);
 void	error_exit(t_stack **a);
 bool	issorted(t_stack *stack);
 size_t	stack_size(t_stack *a);
-void swap(t_stack **a);
-void sort_stack_of3(t_stack **a);
+void	swap(t_stack **a);
+void	sort_stack_of3(t_stack **a);
+void	sort_large_stack(t_stack **a);
 #endif

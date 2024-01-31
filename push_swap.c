@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:32:55 by oruban            #+#    #+#             */
-/*   Updated: 2024/01/29 13:54:40 by oruban           ###   ########.fr       */
+/*   Updated: 2024/01/31 09:45:31 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ static void	sort_stack(t_stack **a)
 		swap(a);
 		ft_printf("sa\n");
 	}
-	if (3 == size)
+	else if (3 == size)
 		sort_stack_of3(a);
+	else
+		sort_large_stack(a);
 }
 
 static void	addnew_stacknode(t_stack **a, int nbr)
