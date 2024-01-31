@@ -1,5 +1,6 @@
 *.o
 push_swap
 *.dSYM
-tmp/Erik*
-tmp/eceano
+tmp/Erik\ Seferi
+tmp/oceano
+tmp/push_swap_qsort
