@@ -6,21 +6,11 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:45:13 by oruban            #+#    #+#             */
-/*   Updated: 2024/01/30 17:55:39 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/01 20:38:30 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// tracing function
-void tracing_t_stack_node(t_stack *a, char *name)
-{
-	ft_printf("node %s\n", name);
-	ft_printf("%s->number = %i\n", name, a->number);
-	ft_printf("%s = %p\n", name, a);
-	ft_printf("%s->prev = %p\n", name, a->previous);
-	ft_printf("%s->next = %p\n", name, a->next);
-}
 
 t_stack *find_last(t_stack *a)
 {
