@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:39:53 by oruban            #+#    #+#             */
-/*   Updated: 2024/01/31 09:52:00 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/02 19:33:02 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ typedef struct	s_stack
 {
 	int				number;
 	int				index;
-	int				push_cost;
 	bool			above_median;
+	int				push_cost;
 	bool			cheapest;
 	struct s_stack	*next;
 	struct s_stack	*previous;

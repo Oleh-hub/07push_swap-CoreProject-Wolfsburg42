@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/01 20:33:34 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/02 20:05:22 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	push(t_stack **src, t_stack **dst)
 {
 	t_stack *tmp;
 	
-	{	// stacks b4
+/* 	{	// stacks b4
 		tracing_t_stack_node(*src, "src");
 		tracing_t_stack_node((*src)->next, "src->next");
 		tracing_t_stack_node(*dst, "dst");
 		if (*dst)
 			tracing_t_stack_node((*dst)->next, "dst->next");
-	}
+	} */
 	tmp = *src;
 	*src = (*src)->next;
 	if (*src)
@@ -53,30 +53,88 @@ void	push(t_stack **src, t_stack **dst)
 		(*dst)->previous = NULL;
 	}
 	
-	{	// stacks after
+/* 	{	// stacks after
 		ft_printf("========== after bp =======");
 		tracing_t_stack_node(*src, "src");
 		tracing_t_stack_node((*src)->next, "src->next");
 		tracing_t_stack_node(*dst, "dst");
 		if (*dst)
 			tracing_t_stack_node((*dst)->next, "dst->next");
+	} */
+}
+
+//initialisation of ->index ans ->above_median elements of the stack
+static void index_median_ini(t_stack *a)
+{
+	size_t i;
+	size_t median;
+
+	if (!a)
+		return ;
+	i = 0;
+	median = stack_size(a)/2;
+	while (a)
+	{
+		a->index = i;
+		if (i <= median)
+			a->above_median = true;
+		else
+			a->above_median = false;
+		a = a->next;
+		i++;	
 	}
 }
 
+static void target_ini(t_stack *a, t_stack *b)
+{
+	if (!a || !b)
+		return ;
+	while (a)
+	{
+		while (b)
+		{
+			
+			b = b->next;
+		}
+		a = a->next;
+	}
+}
 
+// initialisation of both stacks b4 sorting
+static void stacks_ini(t_stack *a, t_stack *b)
+{
+	index_median_ini(a);
+	index_median_ini(b);
+	target_ini(a, b);
+	
+}
+
+// soritng the stak when it is larger then 3 nodes
 void	sort_large_stack(t_stack **a)
 {
 	size_t		size;
 	t_stack		*b;
+	int			i;
 
 	b = NULL;
 	size = 0;
+	i = 2;
 	size = stack_size(*a);
-	if (size > 3 && !issorted(*a))
+	while (size > 3 && !issorted(*a) && i--)
 	{
 		push(a, &b);
-		ft_printf("pb\n", (int) size);
+		ft_printf("pb %i\n", (int) size);
 		size--;
 	}
-	
+	/* {	//
+		ft_printf("size =  %i\n", (int) size);
+		tracing_t_stack_node(b, "b");
+		tracing_t_stack_node(b->next, "b");
+		tracing_t_stack_node(b->next->next, "b");
+	} */
+	while (size-- > 3 && !issorted(*a))
+	{
+		stacks_ini(*a, b);
+	}
+	ft_printf("sorted!\n");
 }
