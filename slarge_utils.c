@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/02 20:05:22 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/03 21:20:11 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,18 +85,55 @@ static void index_median_ini(t_stack *a)
 	}
 }
 
-static void target_ini(t_stack *a, t_stack *b)
+// finds the pointer at the node with max node->number
+static t_stack	*max_number(t_stack	*lst)
 {
-	if (!a || !b)
-		return ;
-	while (a)
+	t_stack	*max_node;
+	long 	max_number;
+	
+	max_node = NULL;
+	max_number = LONG_MIN;
+	while (lst)
 	{
-		while (b)
+		if (lst->number > max_number)
 		{
-			
-			b = b->next;
+			max_number = lst->number;
+			max_node = lst;
 		}
-		a = a->next;
+		lst = lst->next;
+	}
+	return (max_node);
+}
+
+// find for every node of src list the target node in dst list
+/* max is maximum number in dst
+targeted indicates if the number less than src one was found in dst and 
+the target_node was therefore found */
+static void target_ini(t_stack *src, t_stack *dst)
+{
+	t_stack	*tmp;
+	bool	targeted;
+	
+	if (!src || !dst)
+		return ;
+	targeted = false;
+	tmp = dst;
+	while (src)
+	{
+		dst = tmp;
+		while (dst)
+		{
+			if (dst->number < src->number && (!src->target_node ||
+				 dst->number > src->target_node->number))
+			{
+				src->target_node = dst;
+				targeted = true;
+			}
+			dst = dst->next;
+		}
+		if (!targeted)
+			src->target_node = max_number(dst);
+		src = src->next;
 	}
 }
 
