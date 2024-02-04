@@ -3,7 +3,8 @@ CFLAGS 		:= -Wall -Wextra -Werror
 SRCS 		:=	push_swap.c		\
 				stack_utils.c	\
 				sort_utils.c	\
-				slarge_utils.c 
+				slarge_utils.c	\
+				slarge_utils1.c 
 
 OBJS 		:= $(SRCS:.c=.o)
 LIB_PATH 	:= libft/

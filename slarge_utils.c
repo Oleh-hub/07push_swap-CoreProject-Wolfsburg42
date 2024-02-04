@@ -6,29 +6,13 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/04 13:08:18 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/04 14:10:54 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// tracing function
-void	tracing_t_stack_node(t_stack *a, char *name)
-{
-	ft_printf("======node %s=========\n", name);
-	ft_printf("%s = %p\n", name, a);
-	if (!a)
-		return ;
-	ft_printf("%s->number = %i\n", name, a->number);
-	ft_printf("%s->index = %i\n", name, a->index);
-	ft_printf("%s->target_node = %p\n", name, a->target_node);
-	if (a->target_node)
-		ft_printf("%s->target_node->number = %d\n", name,
-			a->target_node->number);
-	ft_printf("%s->prev = %p\n", name, a->previous);
-	ft_printf("%s->next = %p\n", name, a->next);
-}
-
+/* pushes nodes from list (named stack) src into stack dst */
 void	push(t_stack **src, t_stack **dst)
 {
 	t_stack	*tmp;
@@ -71,26 +55,6 @@ static void	index_median_ini(t_stack *a)
 		a = a->next;
 		i++;
 	}
-}
-
-// finds the pointer at the node with max node->number
-static t_stack	*max_number(t_stack	*lst)
-{
-	t_stack	*max_node;
-	long	max_number;
-
-	max_node = NULL;
-	max_number = LONG_MIN;
-	while (lst)
-	{
-		if (lst->number > max_number)
-		{
-			max_number = lst->number;
-			max_node = lst;
-		}
-		lst = lst->next;
-	}
-	return (max_node);
 }
 
 /* find for every node of src list the target node in dst list */
