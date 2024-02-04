@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/04 10:03:04 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/04 12:53:06 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void tracing_t_stack_node(t_stack *a, char *name)
 	ft_printf("%s->number = %i\n", name, a->number);
 	ft_printf("%s->index = %i\n", name, a->index);
 	ft_printf("%s->target_node = %p\n", name, a->target_node);
+	if (a->target_node)
+		ft_printf("%s->target_node->number = %d\n", name, a->target_node->number);
 	ft_printf("%s->prev = %p\n", name, a->previous);
 	ft_printf("%s->next = %p\n", name, a->next);
 }
@@ -107,7 +109,7 @@ static t_stack	*max_number(t_stack	*lst)
 	return (max_node);
 }
 
-// find for every node of src list the target node in dst list
+/* find for every node of src list the target node in dst list */
 /* max is maximum number in dst
 targeted indicates if the number less than src one was found in dst and 
 the target_node was therefore found */
@@ -118,10 +120,10 @@ static void target_ini(t_stack *src, t_stack *dst)
 	
 	if (!src || !dst)
 		return ;
-	targeted = false;
 	tmp = dst;
 	while (src)
 	{
+		targeted = false;
 		dst = tmp;
 		while (dst)
 		{
@@ -134,10 +136,10 @@ static void target_ini(t_stack *src, t_stack *dst)
 			dst = dst->next;
 		}
 		if (!targeted)
-			{
-				// tracing_t_stack_node(tmp, "b"); //
-				src->target_node = max_number(tmp);
-			}
+		{
+			src->target_node = max_number(tmp);
+			targeted = true; //
+		}
 		tracing_t_stack_node(src, "a"); //
 		src = src->next;
 	}
@@ -178,6 +180,7 @@ void	sort_large_stack(t_stack **a)
 	while (size-- > 3 && !issorted(*a))
 	{
 		stacks_ini(*a, b);
+		exit(EXIT_SUCCESS); //
 	}
 	ft_printf("sorted!\n");
 }
