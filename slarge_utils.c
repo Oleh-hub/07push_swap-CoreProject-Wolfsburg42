@@ -6,15 +6,14 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/04 12:53:06 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/04 13:08:18 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
 // tracing function
-void tracing_t_stack_node(t_stack *a, char *name)
+void	tracing_t_stack_node(t_stack *a, char *name)
 {
 	ft_printf("======node %s=========\n", name);
 	ft_printf("%s = %p\n", name, a);
@@ -24,22 +23,16 @@ void tracing_t_stack_node(t_stack *a, char *name)
 	ft_printf("%s->index = %i\n", name, a->index);
 	ft_printf("%s->target_node = %p\n", name, a->target_node);
 	if (a->target_node)
-		ft_printf("%s->target_node->number = %d\n", name, a->target_node->number);
+		ft_printf("%s->target_node->number = %d\n", name,
+			a->target_node->number);
 	ft_printf("%s->prev = %p\n", name, a->previous);
 	ft_printf("%s->next = %p\n", name, a->next);
 }
 
 void	push(t_stack **src, t_stack **dst)
 {
-	t_stack *tmp;
-	
-/* 	{	// stacks b4
-		tracing_t_stack_node(*src, "src");
-		tracing_t_stack_node((*src)->next, "src->next");
-		tracing_t_stack_node(*dst, "dst");
-		if (*dst)
-			tracing_t_stack_node((*dst)->next, "dst->next");
-	} */
+	t_stack	*tmp;
+
 	tmp = *src;
 	*src = (*src)->next;
 	if (*src)
@@ -56,27 +49,18 @@ void	push(t_stack **src, t_stack **dst)
 		(*dst)->next = NULL;
 		(*dst)->previous = NULL;
 	}
-	
-/* 	{	// stacks after
-		ft_printf("========== after bp =======");
-		tracing_t_stack_node(*src, "src");
-		tracing_t_stack_node((*src)->next, "src->next");
-		tracing_t_stack_node(*dst, "dst");
-		if (*dst)
-			tracing_t_stack_node((*dst)->next, "dst->next");
-	} */
 }
 
 //initialisation of ->index ans ->above_median elements of the stack
-static void index_median_ini(t_stack *a)
+static void	index_median_ini(t_stack *a)
 {
-	size_t i;
-	size_t median;
+	size_t	i;
+	size_t	median;
 
 	if (!a)
 		return ;
 	i = 0;
-	median = stack_size(a)/2;
+	median = stack_size (a) / 2;
 	while (a)
 	{
 		a->index = i;
@@ -85,7 +69,7 @@ static void index_median_ini(t_stack *a)
 		else
 			a->above_median = false;
 		a = a->next;
-		i++;	
+		i++;
 	}
 }
 
@@ -93,8 +77,8 @@ static void index_median_ini(t_stack *a)
 static t_stack	*max_number(t_stack	*lst)
 {
 	t_stack	*max_node;
-	long 	max_number;
-	
+	long	max_number;
+
 	max_node = NULL;
 	max_number = LONG_MIN;
 	while (lst)
@@ -113,11 +97,11 @@ static t_stack	*max_number(t_stack	*lst)
 /* max is maximum number in dst
 targeted indicates if the number less than src one was found in dst and 
 the target_node was therefore found */
-static void target_ini(t_stack *src, t_stack *dst)
+static void	target_ini(t_stack *src, t_stack *dst)
 {
 	t_stack	*tmp;
 	bool	targeted;
-	
+
 	if (!src || !dst)
 		return ;
 	tmp = dst;
@@ -127,8 +111,8 @@ static void target_ini(t_stack *src, t_stack *dst)
 		dst = tmp;
 		while (dst)
 		{
-			if (dst->number < src->number && (!src->target_node ||
-				 dst->number > src->target_node->number))
+			if (dst->number < src->number && (!src->target_node
+					|| dst->number > src->target_node->number))
 			{
 				src->target_node = dst;
 				targeted = true;
@@ -136,22 +120,19 @@ static void target_ini(t_stack *src, t_stack *dst)
 			dst = dst->next;
 		}
 		if (!targeted)
-		{
 			src->target_node = max_number(tmp);
-			targeted = true; //
-		}
 		tracing_t_stack_node(src, "a"); //
 		src = src->next;
 	}
 }
 
 // initialisation of both stacks b4 sorting
-static void stacks_ini(t_stack *a, t_stack *b)
+static void	stacks_ini(t_stack *a, t_stack *b)
 {
 	index_median_ini(a);
 	index_median_ini(b);
 	target_ini(a, b);
-	
+	// ... 
 }
 
 // soritng the stak when it is larger then 3 nodes
@@ -171,12 +152,6 @@ void	sort_large_stack(t_stack **a)
 		ft_printf("pb %i\n", (int) size);
 		size--;
 	}
-	/* {	//
-		ft_printf("size =  %i\n", (int) size);
-		tracing_t_stack_node(b, "b");
-		tracing_t_stack_node(b->next, "b");
-		tracing_t_stack_node(b->next->next, "b");
-	} */
 	while (size-- > 3 && !issorted(*a))
 	{
 		stacks_ini(*a, b);

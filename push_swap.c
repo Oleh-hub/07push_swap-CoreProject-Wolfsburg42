@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:32:55 by oruban            #+#    #+#             */
-/*   Updated: 2024/01/31 09:45:31 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/04 13:18:11 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,6 @@ int	main(int ac, char **av)
 	// 	ft_printf(" \n");
 	// 	ft_printf("%p\n", a);
 	// }
-/* ft_atoi recoded for long int. Since any number that are beyand the limits of  
+/* ft_atoi recoded for long int. Since any number that are beyand the limits of
 LONG_MIN and LONG_MAX will be false converted into long time. We do not care 
 because if the requried int will be always correctly converted */ 
