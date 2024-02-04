@@ -25,9 +25,9 @@ typedef struct	s_stack
 	bool			above_median;
 	int				push_cost;
 	bool			cheapest;
+	struct s_stack	*target_node;
 	struct s_stack	*next;
 	struct s_stack	*previous;
-	struct s_stack	*target_node;
 } 					t_stack;
 /* target_node  - for an element of stack a is the nearest smallest in 
 stack b and for an element in b - the nearest biggest in stack a.

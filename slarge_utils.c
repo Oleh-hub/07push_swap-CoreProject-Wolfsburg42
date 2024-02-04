@@ -96,7 +96,7 @@ static void	stacks_ini(t_stack *a, t_stack *b)
 	index_median_ini(a);
 	index_median_ini(b);
 	target_ini(a, b);
-	// ... 
+	// 
 }
 
 // soritng the stak when it is larger then 3 nodes

@@ -21,6 +21,9 @@ void	tracing_t_stack_node(t_stack *a, char *name)
 		return ;
 	ft_printf("%s->number = %i\n", name, a->number);
 	ft_printf("%s->index = %i\n", name, a->index);
+	ft_printf("%s->above_median = %i\n", name, a->above_median);
+	ft_printf("%s->push_cost = %i\n", name, a->push_cost);
+	ft_printf("%s->cheapest = %i\n", name, a->cheapest);
 	ft_printf("%s->target_node = %p\n", name, a->target_node);
 	if (a->target_node)
 		ft_printf("%s->target_node->number = %d\n", name,
