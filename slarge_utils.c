@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/03 21:20:11 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/04 10:03:04 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void tracing_t_stack_node(t_stack *a, char *name)
 	if (!a)
 		return ;
 	ft_printf("%s->number = %i\n", name, a->number);
+	ft_printf("%s->index = %i\n", name, a->index);
+	ft_printf("%s->target_node = %p\n", name, a->target_node);
 	ft_printf("%s->prev = %p\n", name, a->previous);
 	ft_printf("%s->next = %p\n", name, a->next);
 }
@@ -132,7 +134,11 @@ static void target_ini(t_stack *src, t_stack *dst)
 			dst = dst->next;
 		}
 		if (!targeted)
-			src->target_node = max_number(dst);
+			{
+				// tracing_t_stack_node(tmp, "b"); //
+				src->target_node = max_number(tmp);
+			}
+		tracing_t_stack_node(src, "a"); //
 		src = src->next;
 	}
 }
