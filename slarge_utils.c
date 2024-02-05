@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/05 14:10:26 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/05 15:27:49 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,10 @@ static void	target_ini(t_stack *src, t_stack *dst)
 	}
 }
 
-// initialisation of both stacks b4 sorting
+/* initialisation (finding out the correct element to push) of both stacks b4 
+sorting (moving the correct element to another stack).
+wher epush_cost_ini assingns ->push_cost with the number of r or rr needed
+to get to the top of the stack */
 static void	stacks_ini(t_stack *a, t_stack *b)
 {
 	index_median_ini(a);
@@ -100,7 +103,7 @@ static void	stacks_ini(t_stack *a, t_stack *b)
 	target_ini(a, b);
 	push_cost_ini(a);
 	push_cost_ini(b);
-	
+	cheapest_ini(a);
 	tracing_lst(a, "a"); // 
 	tracing_lst(b, "b"); // 
 }
