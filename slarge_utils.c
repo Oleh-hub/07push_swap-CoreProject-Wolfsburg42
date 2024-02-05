@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/04 14:10:54 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/05 14:10:26 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,26 @@ void	push(t_stack **src, t_stack **dst)
 }
 
 //initialisation of ->index ans ->above_median elements of the stack
-static void	index_median_ini(t_stack *a)
+static void	index_median_ini(t_stack *lst)
 {
 	size_t	i;
+	size_t	size;
 	size_t	median;
 
-	if (!a)
+	if (!lst)
 		return ;
 	i = 0;
-	median = stack_size (a) / 2;
-	while (a)
+	size = stack_size (lst);
+	median = size / 2 + size % 2;
+	while (lst)
 	{
-		a->index = i;
-		if (i <= median)
-			a->above_median = true;
+		lst->index = i;
+		if (i < median)
+			lst->above_median = true;
 		else
-			a->above_median = false;
-		a = a->next;
+			lst->above_median = false;
+		lst->cheapest = false;
+		lst = lst->next;
 		i++;
 	}
 }
@@ -85,7 +88,6 @@ static void	target_ini(t_stack *src, t_stack *dst)
 		}
 		if (!targeted)
 			src->target_node = max_number(tmp);
-		tracing_t_stack_node(src, "a"); //
 		src = src->next;
 	}
 }
@@ -96,7 +98,11 @@ static void	stacks_ini(t_stack *a, t_stack *b)
 	index_median_ini(a);
 	index_median_ini(b);
 	target_ini(a, b);
-	// 
+	push_cost_ini(a);
+	push_cost_ini(b);
+	
+	tracing_lst(a, "a"); // 
+	tracing_lst(b, "b"); // 
 }
 
 // soritng the stak when it is larger then 3 nodes
@@ -113,7 +119,7 @@ void	sort_large_stack(t_stack **a)
 	while (size > 3 && !issorted(*a) && i--)
 	{
 		push(a, &b);
-		ft_printf("pb %i\n", (int) size);
+		ft_printf("pb %i\n");
 		size--;
 	}
 	while (size-- > 3 && !issorted(*a))
