@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:39:53 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/06 08:35:16 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/06 09:33:23 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	push(t_stack **src, t_stack **dst);
 t_stack	*max_number(t_stack	*lst);
 void	push_cost_ini(t_stack *lst);
 void	cheapest_ini(t_stack *lst);
-void	tracing_t_stack_node(t_stack *a, char *name); // debug tracing
-void	tracing_lst(t_stack *lst, char *name); // debug, lst tracing
+void	move_node(t_stack *src, t_stack *dst);
+void	tracing_t_stack_node(t_stack *a, char *name); 	// debug tracing
+void	tracing_lst(t_stack *lst, char *name);			// debug, lst tracing
 #endif

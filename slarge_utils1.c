@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/06 09:21:10 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/06 09:31:30 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,10 @@ void	cheapest_ini(t_stack *lst)
 		lst = lst->next;
 	}
 	cheapest_node->cheapest = true;
+}
+
+/* moves teh cheapest node from src inot dst using r, rr , p ... commands */
+void move_node(t_stack *src, t_stack *dst)
+{
+	
 }
