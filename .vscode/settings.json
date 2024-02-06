@@ -3,6 +3,8 @@
 		"stdio.h": "c",
 		"stdarg.h": "c",
 		"push_swap.h": "c",
-		"stdbool.h": "c"
+		"stdbool.h": "c",
+		"__bit_reference": "c",
+		"algorithm": "c"
 	}
 }

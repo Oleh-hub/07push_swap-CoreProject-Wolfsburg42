@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/06 09:31:30 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/06 17:49:07 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,35 @@ void	cheapest_ini(t_stack *lst)
 }
 
 /* moves teh cheapest node from src inot dst using r, rr , p ... commands */
-void move_node(t_stack *src, t_stack *dst)
+void	move_node(t_stack *src, t_stack *dst)
 {
+	t_stack *tmp;
+	
+	tmp = src;
+	while (!(src->cheapest))
+		src = src->next;
+	if (src->above_median == src->target_node->above_median) 
+	{
+		if (src->above_median)
+		{
+			while ((src->push_cost)-- && (src->target_node->push_cost)--)
+			{
+				rotate(&src);
+				rotate(&dst);
+				printf("rr\n");
+			}
+			while ((src->push_cost)-- > 0)
+			{
+				rotate(&src);
+				printf("ra\n");
+			}
+			while ((src->target_node->push_cost)-- > 0)
+			{
+				rotate(&dst);
+				printf("rb\n");
+			}
+		}
+		
+	}
 	
 }
