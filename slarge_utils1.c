@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/05 14:00:28 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/06 09:21:10 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ t_stack	*max_number(t_stack	*lst)
 // initializes st->above_median and lst->push_cost
 void	push_cost_ini(t_stack *lst)
 {
-	size_t max;
-	
+	size_t	max;
+
 	max = stack_size(lst);
 	while (lst)
 	{
@@ -83,17 +83,32 @@ void	push_cost_ini(t_stack *lst)
 	}
 }
 
-void cheapest_ini(t_stack *lst)
+// finds out the cheapest node to push and ini-s it with true
+void	cheapest_ini(t_stack *lst)
 {
-	long	total_cost;
-	long	cheapest_node_total;
+	long	cheapest_cost;
+	long	current_cost;
 	t_stack	*cheapest_node;
 
-	total_cost = LONG_MAX;
+	cheapest_cost = LONG_MAX;
 	cheapest_node = NULL;
-	while(lst)
+	while (lst)
 	{
-		if (lst->push_cost +)
+		if (lst->above_median == lst->target_node->above_median)
+		{
+			if (lst->push_cost > lst->target_node->push_cost)
+				current_cost = lst->push_cost;
+			else
+				current_cost = lst->target_node->push_cost;
+		}
+		else
+			current_cost = lst->push_cost + lst->target_node->push_cost;
+		if (current_cost < cheapest_cost)
+		{
+			cheapest_cost = current_cost;
+			cheapest_node = lst;
+		}
 		lst = lst->next;
 	}
+	cheapest_node->cheapest = true;
 }
