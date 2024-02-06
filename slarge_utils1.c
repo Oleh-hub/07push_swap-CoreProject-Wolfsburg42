@@ -31,6 +31,7 @@ void	tracing_t_stack_node(t_stack *a, char *name)
 	ft_printf("%s->prev = %p\n", name, a->previous);
 	ft_printf("%s->next = %p\n", name, a->next);
 }
+
 // tracing list lst
 void	tracing_lst(t_stack *lst, char *name)
 {
@@ -78,6 +79,21 @@ void	push_cost_ini(t_stack *lst)
 			lst->push_cost = lst->index;
 		else
 			lst->push_cost = max - lst->index;
+		lst = lst->next;
+	}
+}
+
+void cheapest_ini(t_stack *lst)
+{
+	long	total_cost;
+	long	cheapest_node_total;
+	t_stack	*cheapest_node;
+
+	total_cost = LONG_MAX;
+	cheapest_node = NULL;
+	while(lst)
+	{
+		if (lst->push_cost +)
 		lst = lst->next;
 	}
 }

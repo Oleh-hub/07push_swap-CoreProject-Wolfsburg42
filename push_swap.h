@@ -45,6 +45,7 @@ void	sort_large_stack(t_stack **a);
 void	push(t_stack **src, t_stack **dst);
 t_stack	*max_number(t_stack	*lst);
 void	push_cost_ini(t_stack *lst);
+void	cheapest_ini(t_stack *lst);
 void	tracing_t_stack_node(t_stack *a, char *name); // debug tracing
 void	tracing_lst(t_stack *lst, char *name); // debug, lst tracing
 #endif
