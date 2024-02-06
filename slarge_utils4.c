@@ -1,51 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   slarge_utils1.c                                    :+:      :+:    :+:   */
+/*   slarge_utils4.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/06 17:49:07 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/06 20:23:04 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// tracing function 4 debug
-void	tracing_t_stack_node(t_stack *a, char *name)
-{
-	ft_printf("======node %s=========\n", name);
-	ft_printf("%s = %p\n", name, a);
-	if (!a)
-		return ;
-	ft_printf("%s->number = %i\n", name, a->number);
-	ft_printf("%s->index = %i\n", name, a->index);
-	ft_printf("%s->above_median = %i\n", name, a->above_median);
-	ft_printf("%s->push_cost = %i\n", name, a->push_cost);
-	ft_printf("%s->cheapest = %i\n", name, a->cheapest);
-	ft_printf("%s->target_node = %p\n", name, a->target_node);
-	if (a->target_node)
-		ft_printf("%s->target_node->number = %d\n", name,
-			a->target_node->number);
-	ft_printf("%s->prev = %p\n", name, a->previous);
-	ft_printf("%s->next = %p\n", name, a->next);
-}
-
-// tracing list lst
-void	tracing_lst(t_stack *lst, char *name)
-{
-	if (!lst)
-	{
-		printf("list %s = NULL", name);
-		return ;
-	}
-	while (lst)
-	{
-		tracing_t_stack_node(lst, name);
-		lst = lst->next;
-	}
-}
 
 // finds the pointer at the node with max node->number
 t_stack	*max_number(t_stack	*lst)
@@ -113,36 +78,63 @@ void	cheapest_ini(t_stack *lst)
 	cheapest_node->cheapest = true;
 }
 
+/* rr, ra, rb as well as rrr, rra, rrb to till the node to b pushed adn target 
+are on the top of both stacks */
+static void	node2top(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **))
+{
+	while ((src->push_cost) && (src->target_node->push_cost))
+	{
+		r_rr(&src);
+		r_rr(&dst);
+		src->push_cost--;
+		src->target_node->push_cost--;
+		if (r_rr == rotate)
+			ft_printf("rr\n");
+		else
+			ft_printf("rrr\n");
+	}
+	while ((src->push_cost)--)
+	{
+		r_rr(&src);
+		if (r_rr == rotate)
+			ft_printf("ra\n");
+		else
+			ft_printf("rra\n");
+	}
+	while ((src->target_node->push_cost)--)
+	{
+		r_rr(&dst);
+		if (r_rr == rotate)
+			ft_printf("rb\n");
+		else
+			ft_printf("rrb\n");
+	}
+}
+
 /* moves teh cheapest node from src inot dst using r, rr , p ... commands */
 void	move_node(t_stack *src, t_stack *dst)
 {
-	t_stack *tmp;
-	
+	t_stack	*tmp;
+
 	tmp = src;
 	while (!(src->cheapest))
 		src = src->next;
-	if (src->above_median == src->target_node->above_median) 
+	if (src->above_median == src->target_node->above_median)
 	{
 		if (src->above_median)
-		{
-			while ((src->push_cost)-- && (src->target_node->push_cost)--)
-			{
-				rotate(&src);
-				rotate(&dst);
-				printf("rr\n");
-			}
-			while ((src->push_cost)-- > 0)
-			{
-				rotate(&src);
-				printf("ra\n");
-			}
-			while ((src->target_node->push_cost)-- > 0)
-			{
-				rotate(&dst);
-				printf("rb\n");
-			}
-		}
-		
+			node2top(src, dst, rotate);
+		else
+			node2top(src, dst, rrotate);
 	}
+	else	if (src->above_median)
+			{
+				while ((src->push_cost)--)
+				{
+					rotate(&src);
+					printf("ra\n");
+				}
+			}
+			else ;
+			//
 	
 }

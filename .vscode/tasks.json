@@ -16,6 +16,7 @@
                 "sort_utils.c",
                 "slarge_utils.c",
                 "slarge_utils1.c",
+                "others.c",
                 "-o",
                 "${workspaceFolder}/${fileBasenameNoExtension}",
                 "-L./libft",

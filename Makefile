@@ -2,10 +2,11 @@
 NAME 		:= push_swap
 CFLAGS 		:= -Wall -Wextra -Werror
 SRCS 		:=	push_swap.c		\
-				stack_utils.c	\
-				sort_utils.c	\
-				slarge_utils.c	\
-				slarge_utils1.c 
+				stack_utils1.c	\
+				sort_utils2.c	\
+				slarge_utils3.c	\
+				slarge_utils4.c \
+				others5.c
 
 OBJS 		:= $(SRCS:.c=.o)
 LIB_PATH 	:= libft/

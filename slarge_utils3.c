@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   slarge_utils.c                                     :+:      :+:    :+:   */
+/*   slarge_utils3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/06 17:27:41 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/06 20:24:50 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static void	stacks_ini(t_stack *a, t_stack *b)
 }
 
 // soritng the stak when it is larger then 3 nodes
-void	sort_large_stack(t_stack **a)
+void		sort_large_stack(t_stack **a)
 {
 	size_t		size;
 	t_stack		*b;
