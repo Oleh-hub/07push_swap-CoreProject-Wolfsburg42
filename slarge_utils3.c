@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/06 20:24:50 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/07 10:47:30 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void		sort_large_stack(t_stack **a)
 	while (size-- > 3 && !issorted(*a))
 	{
 		stacks_ini(*a, b);
-		move_node(*a, b);
+		move_node(*a, b, "a");
 		exit(EXIT_SUCCESS); //
 	}
 	ft_printf("sorted!\n");

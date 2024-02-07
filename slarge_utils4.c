@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/06 20:23:04 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/07 10:54:04 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,40 +79,54 @@ void	cheapest_ini(t_stack *lst)
 }
 
 /* rr, ra, rb as well as rrr, rra, rrb to till the node to b pushed adn target 
-are on the top of both stacks */
-static void	node2top(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **))
+are on the top of both stacks 
+is PARAMETER char stack is for std output if == 'a' the node is moved from 
+stack a to stack b*/
+static void	node2top(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **),
+	char *stack_str)
 {
+	char	*op_str;
+	
+	op_str = NULL;
 	while ((src->push_cost) && (src->target_node->push_cost))
 	{
+		if (r_rr == rotate)
+			op_str = ft_strdup ("r");
+		else
+			op_str = ft_strdup ("rr");
+		if (!op_str)
+		{
+			free_stack(&dst);
+			error_exit(&src);
+		}
 		r_rr(&src);
 		r_rr(&dst);
 		src->push_cost--;
 		src->target_node->push_cost--;
-		if (r_rr == rotate)
-			ft_printf("rr\n");
-		else
-			ft_printf("rrr\n");
+		ft_printf("%sr\n", op_str);
 	}
 	while ((src->push_cost)--)
 	{
 		r_rr(&src);
-		if (r_rr == rotate)
-			ft_printf("ra\n");
+		if (*stack_str == 'a')
+			ft_printf("%sa\n", op_str);
 		else
-			ft_printf("rra\n");
+			ft_printf("%sb\n", op_str);
 	}
 	while ((src->target_node->push_cost)--)
 	{
 		r_rr(&dst);
-		if (r_rr == rotate)
-			ft_printf("rb\n");
+		if (*stack_str == 'a')
+			ft_printf("%sb\n", op_str);
 		else
-			ft_printf("rrb\n");
+			ft_printf("%sa\n", op_str);
 	}
+	if (op_str)
+		free (op_str);
 }
 
 /* moves teh cheapest node from src inot dst using r, rr , p ... commands */
-void	move_node(t_stack *src, t_stack *dst)
+void	move_node(t_stack *src, t_stack *dst, char *stack_str)
 {
 	t_stack	*tmp;
 
@@ -122,19 +136,19 @@ void	move_node(t_stack *src, t_stack *dst)
 	if (src->above_median == src->target_node->above_median)
 	{
 		if (src->above_median)
-			node2top(src, dst, rotate);
+			node2top(src, dst, rotate, stack_str);
 		else
-			node2top(src, dst, rrotate);
+			node2top(src, dst, rrotate, stack_str);
 	}
-	else	if (src->above_median)
-			{
-				while ((src->push_cost)--)
-				{
-					rotate(&src);
-					printf("ra\n");
-				}
-			}
-			else ;
+	else if (src->above_median)
+	{
+		while ((src->push_cost)--)
+		{
+			rotate(&src);
+			printf("ra\n");
+		}
+	}
+	else ;
 			//
 	
 }
