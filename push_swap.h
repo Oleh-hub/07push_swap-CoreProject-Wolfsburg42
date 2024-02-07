@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:39:53 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/07 10:43:34 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/07 17:40:44 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ above_median - if a target_node is above median "rotate" ra or rb should be
 executed, if not - "reverse rotate" rra or rrb*/
 void 	free_stack(t_stack **a);
 void	error_exit(t_stack **a);
+void	error_exit_free_2_stacks(t_stack **a, t_stack **b);
 bool	issorted(t_stack *stack);
 size_t	stack_size(t_stack *a);
 void	swap(t_stack **a);

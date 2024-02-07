@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 10:48:49 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/07 12:16:17 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/07 17:30:44 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,30 +66,6 @@ size_t	stack_size(t_stack *a)
 		a = a->next;
 	}
 	return (i);
-}
-
-void	free_stack(t_stack **a)
-{
-	t_stack	*tmp_node;
-
-	while (*a)
-	{
-		tmp_node = *a;
-		*a = tmp_node->next;
-		free(tmp_node);
-	}
-	*a = NULL;
-}
-
-/* fees memory allocated for the stack and
-	 exits from the programm because of input errors 
-	PARAMETERS:  pointer at the pointer to the stack
-	RETURNS: 	nothing*/
-void	error_exit(t_stack **a)
-{
-	free_stack(a);
-	ft_printf("Error\n");
-	exit(1);
 }
 
 bool	issorted(t_stack *stack)

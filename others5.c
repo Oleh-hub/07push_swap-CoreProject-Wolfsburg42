@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:34:15 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/07 10:45:11 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/07 17:36:51 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,35 @@ void	tracing_lst(t_stack *lst, char *name)
 	}
 }
 
-
-/* void print_out(char oprtn)
+void	free_stack(t_stack **a)
 {
-	
-} */
+	t_stack	*tmp_node;
+
+	if (!*a)
+		return ;
+	while (*a)
+	{
+		tmp_node = *a;
+		*a = tmp_node->next;
+		free(tmp_node);
+	}
+	*a = NULL;
+}
+
+/* fees memory allocated for the stack and
+	 exits from the programm because of input errors 
+	PARAMETERS:  pointer at the pointer to the stack
+	RETURNS: 	nothing*/
+void	error_exit(t_stack **a)
+{
+	if (*a)
+		free_stack(a);
+	ft_printf("Error\n");
+	exit(1);
+}
+
+void	error_exit_free_2_stacks(t_stack **a, t_stack **b)
+{
+	free_stack(b);
+	error_exit(a);
+}
