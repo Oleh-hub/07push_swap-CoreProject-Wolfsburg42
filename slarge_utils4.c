@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/07 15:21:53 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/07 15:51:23 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,10 @@ static void	node2top(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **),
 		free (op_name);
 }
 
-/* moves teh cheapest node from src inot dst using r, rr , p ... commands */
-void	move_node(t_stack *src, t_stack *dst, char *stack_str)
+/* moves teh cheapest node from src inot dst using r, rr , p ... commands
+where char *stack_name is either "a" or "b" and is the name of 
+t_stack *src */
+void	move_node(t_stack *src, t_stack *dst, char *stack_name)
 {
 	t_stack	*tmp;
 
@@ -133,16 +135,16 @@ void	move_node(t_stack *src, t_stack *dst, char *stack_str)
 	if (src->above_median == src->target_node->above_median)
 	{
 		if (src->above_median)
-			node2top(src, dst, rotate, stack_str);
+			node2top(src, dst, rotate, stack_name);
 		else
-			node2top(src, dst, rrotate, stack_str);
+			node2top(src, dst, rrotate, stack_name);
 	}
-	else if (src->above_median)
+	else if (src->above_median) //
 	{
-		while ((src->push_cost)--)
+		while ((src->push_cost)-- > 0)
 		{
 			rotate(&src);
-			printf("ra\n");
+			printf("r%s\n", stack_name);
 		}
 	}
 	else ;
