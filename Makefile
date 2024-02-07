@@ -6,7 +6,8 @@ SRCS 		:=	push_swap.c		\
 				sort_utils2.c	\
 				slarge_utils3.c	\
 				slarge_utils4.c \
-				others5.c
+				slarge_utils5.c	\
+				others99.c
 
 OBJS 		:= $(SRCS:.c=.o)
 LIB_PATH 	:= libft/

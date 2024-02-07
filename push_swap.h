@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:39:53 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/07 17:40:44 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/07 19:03:47 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,19 @@ void	rotate(t_stack **a);
 void	rrotate(t_stack **head);
 void	move_node(t_stack *src, t_stack *dst, char *stack); /* char stack is
  just the 'from' stack name if it is a ´pb´ follows */
+
+/* structure and functions using it */
+typedef struct	s_name
+{
+	char	*op_name;
+	char	*stack_name;
+}				t_name;
+/* static void	node2top(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **),
+	char *stack_name); */
+void node2top_itself(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **),
+	t_name *full_op_name);
+	
+/* Debugging functions: */
 void	tracing_t_stack_node(t_stack *a, char *name); 	// debug tracing
 void	tracing_lst(t_stack *lst, char *name);			// debug, lst tracing
 #endif

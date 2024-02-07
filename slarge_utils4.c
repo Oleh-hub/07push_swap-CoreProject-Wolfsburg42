@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/07 17:55:02 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/07 19:09:47 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +82,15 @@ void	cheapest_ini(t_stack *lst)
 are on the top of both stacks 
 is PARAMETER char stack_name is for std output if == "a" the node is moved from 
 stack a to stack b BUT if stack_name == "b", it is vice versa*/
-typedef struct	s_name 
-{
-	char	*op_name;
-	char *stack_name;
-}				t_name;
 
-
-// void node2top_itself()
-
-
+/* funciton preparing the full operation name to print out during moving 
+the node up and calling the function node2top_itself() that does the move
+and prints out what is needed from rr, rrr, ra, rb, rra and rrb  */
 static void	node2top(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **),
 	char *stack_name)
 {
 	t_name	*full_op_name;
-	
+
 	full_op_name = malloc(sizeof(t_name));
 	if (!full_op_name)
 		error_exit_free_2_stacks(&src, &dst);
@@ -108,34 +102,13 @@ static void	node2top(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **),
 		full_op_name->op_name = ft_strdup ("rr");
 	if (!(full_op_name->op_name))
 		error_exit_free_2_stacks(&src, &dst);
-			while ((src->push_cost) && (src->target_node->push_cost))
-			{
-				r_rr(&src);
-				r_rr(&dst);
-				src->push_cost--;
-				src->target_node->push_cost--;
-				ft_printf("%sr\n", full_op_name->op_name);
-			}
-			while ((src->push_cost)--)
-			{
-				r_rr(&src);
-				ft_printf("%s%s\n", full_op_name->op_name, full_op_name->stack_name);
-			}
-			while ((src->target_node->push_cost)--)
-			{
-				r_rr(&dst);
-				if (*(full_op_name->stack_name) == 'a')
-					ft_printf("%sb\n", full_op_name->op_name);
-				else
-					ft_printf("%sa\n", full_op_name->op_name);
-			}
+	node2top_itself(src, dst, r_rr, full_op_name);
 	if (full_op_name)
 	{
 		if (full_op_name->op_name)
 			free (full_op_name->op_name);
 		free (full_op_name);
 	}
-	
 }
 
 /* moves teh cheapest node from src inot dst using r, rr , p ... commands

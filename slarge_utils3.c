@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/07 13:27:35 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/07 18:53:34 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static void	stacks_ini(t_stack *a, t_stack *b)
 }
 
 // soritng the stak when it is larger then 3 nodes
-void		sort_large_stack(t_stack **a)
+void	sort_large_stack(t_stack **a)
 {
 	size_t		size;
 	t_stack		*b;
