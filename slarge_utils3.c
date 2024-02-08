@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/08 10:05:44 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/08 20:04:26 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,13 @@ void	sort_large_stack(t_stack **a)
 		push(a, &b);			// testing
 		push(a, &b);			// testing
 		stacks_ini(*a, b);
-		tracing_lst(*a, "a"); 	// tracing
+		ft_printf("=====sort_large_stack(), b4=====");
+		// tracing_lst(*a, "a"); 	// tracing
 		tracing_lst(b, "b"); 	// tracing
-		move_node(*a, b, "a");  // is not properly tested
+		move_node(*a, b, "a");
+		ft_printf("=====sort_large_stack(), after=====");
+		// tracing_lst(*a, "a"); 	// tracing
+		tracing_lst(b, "b"); 	// tracing
 		exit(EXIT_SUCCESS); //
 	}
 	ft_printf("sorted!\n");

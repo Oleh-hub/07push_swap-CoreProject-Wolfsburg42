@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/08 09:00:24 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/08 19:28:42 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,21 +116,21 @@ where char *stack_name is either "a" or "b" and is the name of
 t_stack *src */
 void	move_node(t_stack *src, t_stack *dst, char *stack_name)
 {
-	t_stack	*tmp;
+	t_stack	*node2mv;
 
-	tmp = src;
-	while (!(src->cheapest))
-		src = src->next;
-	if (src->above_median == src->target_node->above_median)
+	node2mv = src;
+	while (!(node2mv->cheapest))
+		node2mv = node2mv->next;
+	if (node2mv->above_median == node2mv->target_node->above_median)
 	{
-		if (src->above_median)
+		if (node2mv->above_median)
 			node2top(src, dst, rotate, stack_name);
 		else
 			node2top(src, dst, rrotate, stack_name);
 	}
-	else if (src->above_median) //
+	else if (node2mv->above_median) //
 	{
-		while ((src->push_cost)-- > 0)
+		while ((node2mv->push_cost)-- > 0)
 		{
 			rotate(&src);
 			printf("r%s\n", stack_name);
