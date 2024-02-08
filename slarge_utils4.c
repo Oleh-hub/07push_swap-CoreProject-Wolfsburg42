@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/07 19:09:47 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/08 09:00:24 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static void	node2top(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **),
 	}
 }
 
-/* moves teh cheapest node from src inot dst using r, rr , p ... commands
+/* moves the cheapest node from src inot dst using r, rr , p ... commands
 where char *stack_name is either "a" or "b" and is the name of 
 t_stack *src */
 void	move_node(t_stack *src, t_stack *dst, char *stack_name)
@@ -135,6 +135,7 @@ void	move_node(t_stack *src, t_stack *dst, char *stack_name)
 			rotate(&src);
 			printf("r%s\n", stack_name);
 		}
+		
 	}
 	else ;
 			//

@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/07 18:53:34 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/08 10:05:44 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	target_ini(t_stack *src, t_stack *dst)
 		while (dst)
 		{
 			if (dst->number < src->number && (!src->target_node
-					|| dst->number > src->target_node->number))
+					|| (dst->number > src->target_node->number)))
 			{
 				src->target_node = dst;
 				targeted = true;
@@ -104,8 +104,6 @@ static void	stacks_ini(t_stack *a, t_stack *b)
 	push_cost_ini(a);
 	push_cost_ini(b);
 	cheapest_ini(a);
-	tracing_lst(a, "a"); // 
-	tracing_lst(b, "b"); // 
 }
 
 // soritng the stak when it is larger then 3 nodes
@@ -128,8 +126,12 @@ void	sort_large_stack(t_stack **a)
 	while (size-- > 3 && !issorted(*a))
 	{
 		// push(a, &b); // testing 3 in b
+		push(a, &b);			// testing
+		push(a, &b);			// testing
 		stacks_ini(*a, b);
-		move_node(*a, b, "a");  // is not propaerly tested
+		tracing_lst(*a, "a"); 	// tracing
+		tracing_lst(b, "b"); 	// tracing
+		move_node(*a, b, "a");  // is not properly tested
 		exit(EXIT_SUCCESS); //
 	}
 	ft_printf("sorted!\n");
