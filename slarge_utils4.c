@@ -118,6 +118,8 @@ void	move_node(t_stack *src, t_stack *dst, char *stack_name)
 {
 	t_stack	*node2mv;
 
+	ft_printf("=====move_node(), b4====="); //
+	tracing_lst(dst, "b"); 	// tracing
 	node2mv = src;
 	while (!(node2mv->cheapest))
 		node2mv = node2mv->next;
@@ -137,7 +139,8 @@ void	move_node(t_stack *src, t_stack *dst, char *stack_name)
 		}
 		
 	}
-	else ;
+	else {};
 			//
-	
+	ft_printf("=====move_node(), after====="); //
+	tracing_lst(dst, "b"); 	// tracing
 }
