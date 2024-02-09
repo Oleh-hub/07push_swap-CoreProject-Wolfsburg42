@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/09 15:07:56 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/09 16:19:31 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,7 @@ static void	node2top(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **),
 		full_op_name->op_name = ft_strdup ("rr");
 	if (!(full_op_name->op_name))
 		error_exit_free_2_stacks(&src, &dst);
-/* 	ft_printf("=====node2top(), b4====="); //
-	tracing_lst(src, "a"); 	// tracing
-	tracing_lst(dst, "b"); 	// tracing */
 	node2top_itself(&src, &dst, r_rr, full_op_name);
-/* 	ft_printf("=====node2top(), after====="); //
-	tracing_lst(src, "a"); 	// tracing
-	tracing_lst(dst, "b"); 	// tracing */
 	if (full_op_name)
 	{
 		if (full_op_name->op_name)
@@ -124,11 +118,7 @@ void	move_node(t_stack *src, t_stack *dst, char *stack_name)
 {
 	t_stack	*node2mv;
 
-	// ft_printf("=====move_node(), b4====="); //
-	// tracing_lst(dst, "b"); 	// tracing
-	node2mv = src;
-	while (!(node2mv->cheapest))
-		node2mv = node2mv->next;
+	node2mv = find_cheapest(src);
 	if (node2mv->above_median == node2mv->target_node->above_median)
 	{
 		if (node2mv->above_median)
@@ -147,6 +137,4 @@ void	move_node(t_stack *src, t_stack *dst, char *stack_name)
 	}
 	else {};
 			//
-	// ft_printf("=====move_node(), after====="); //
-	// tracing_lst(dst, "b"); 	// tracing
 }

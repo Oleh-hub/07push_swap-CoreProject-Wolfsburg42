@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:39:53 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/09 12:29:06 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/09 16:19:08 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct	s_name
 	char *stack_name); */
 void node2top_itself(t_stack **src, t_stack **dst, void (*r_rr)(t_stack **),
 	t_name *full_op_name);
+t_stack	*find_cheapest(t_stack *src);
 	
 /* Debugging functions: */
 void	tracing_t_stack_node(t_stack *a, char *name); 	// debug tracing
