@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/08 20:04:26 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/09 14:55:34 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,18 @@ static void	index_median_ini(t_stack *lst)
 	}
 }
 
+/* ini all lst->target_node with NULL. For debugging perposis. Somehow with
+debug extantion I often have rubbish in src->target_node*/
+/* static void target2null_ini(t_stack *lst)
+{
+	if (!lst)
+		return ;
+	while (lst)
+	{
+		lst->target_node = NULL;
+		lst = lst->next;
+	}
+} */
 /* find for every node of src list the target node in dst list */
 /* max is maximum number in dst
 targeted indicates if the number less than src one was found in dst and 
@@ -79,7 +91,7 @@ static void	target_ini(t_stack *src, t_stack *dst)
 		while (dst)
 		{
 			if (dst->number < src->number && (!src->target_node
-					|| (dst->number > src->target_node->number)))
+					|| (dst->number > src->target_node->number))) // EXC_BAD_ACCESS (code=1, address=0xffffffffffffffff) - src->target_node
 			{
 				src->target_node = dst;
 				targeted = true;
@@ -100,6 +112,7 @@ static void	stacks_ini(t_stack *a, t_stack *b)
 {
 	index_median_ini(a);
 	index_median_ini(b);
+	// target2null_ini(a);
 	target_ini(a, b);
 	push_cost_ini(a);
 	push_cost_ini(b);
