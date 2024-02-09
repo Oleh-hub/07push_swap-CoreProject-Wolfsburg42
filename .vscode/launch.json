@@ -22,7 +22,7 @@
 		// "args": ["99 0 25 -38 10 7 42"],
 		// "args": ["5 99 1 0 100 2 3 -1"],
 		// "args": ["50 100 1 0 101 2 3 5"],
-		"args": ["-95 -31 -72 81 -83 -12 20 3"], // in 2 stacks by 4 numbers 1 rb needed
+		"args": ["-95 -31 -72 81 -83 -12 20 3"], // in 2 stacks by 4 numbers 1 rrb needed
 		// "args": [""],
 		"cwd": "${workspaceFolder}",
 		"stopAtEntry": false,

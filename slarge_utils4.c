@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/09 18:50:03 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/09 20:12:41 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,28 +114,28 @@ static void	node2top(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **),
 /* moves the cheapest node from src inot dst using r, rr , p ... commands
 where char *stack_name is either "a" or "b" and is the name of 
 t_stack *src */
-void	move_node(t_stack *src, t_stack *dst, char *stack_name)
+void	move_node(t_stack **src, t_stack **dst, char *stack_name)
 {
 	t_stack	*node2mv;
 
-	node2mv = find_cheapest(src);
+	node2mv = find_cheapest(*src);
 	if (node2mv->above_median == node2mv->target_node->above_median)
 	{
 		if (node2mv->above_median)
-			node2top(src, dst, rotate, stack_name);
+			node2top(*src, *dst, rotate, stack_name);
 		else
-			node2top(src, dst, rrotate, stack_name);
+			node2top(*src, *dst, rrotate, stack_name);
 	}
 	else if (node2mv->above_median)
 	{ //========= new coded . need to b checked=======
 		while ((node2mv->push_cost)-- > 0)
 		{
-			rotate(&src);
+			rotate(src);
 			printf("r%s\n", stack_name);
 		}
 		while ((node2mv->target_node->push_cost)-- > 0)
 		{
-			rrotate(&dst);
+			rrotate(dst);
 			if (*stack_name == 'a')
 				printf("rrb\n");
 			else
@@ -146,12 +146,12 @@ void	move_node(t_stack *src, t_stack *dst, char *stack_name)
 	{
 		while ((node2mv->push_cost)-- > 0)
 		{
-			rrotate(&src);
+			rrotate(src);
 			printf("rr%s\n", stack_name);
 		}
 		while ((node2mv->target_node->push_cost)-- > 0)
 		{
-			rotate(&dst);
+			rotate(dst);
 			if (*stack_name == 'a')
 				printf("rb\n");
 			else

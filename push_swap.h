@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:39:53 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/09 16:19:08 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/09 20:11:31 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	push_cost_ini(t_stack *lst);
 void	cheapest_ini(t_stack *lst);
 void	rotate(t_stack **a);
 void	rrotate(t_stack **head);
-void	move_node(t_stack *src, t_stack *dst, char *stack); /* char stack is
+void	move_node(t_stack **src, t_stack **dst, char *stack); /* char stack is
  just the 'from' stack name if it is a ´pb´ follows */
 
 /* structure and functions using it */
