@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:10:01 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/09 16:26:09 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/09 17:00:01 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	node2top_itself(t_stack **src, t_stack **dst, void (*r_rr)(t_stack **),
 	}
 }
 
+/* RETURNS the pointer at the cheapest node to move */
 t_stack	*find_cheapest(t_stack *src)
 {
 	t_stack	*node2mv;

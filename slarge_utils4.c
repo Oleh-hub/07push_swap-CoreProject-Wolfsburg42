@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/09 16:19:31 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/09 18:50:03 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,15 +126,37 @@ void	move_node(t_stack *src, t_stack *dst, char *stack_name)
 		else
 			node2top(src, dst, rrotate, stack_name);
 	}
-	else if (node2mv->above_median) //
-	{
+	else if (node2mv->above_median)
+	{ //========= new coded . need to b checked=======
 		while ((node2mv->push_cost)-- > 0)
 		{
 			rotate(&src);
 			printf("r%s\n", stack_name);
 		}
-		
+		while ((node2mv->target_node->push_cost)-- > 0)
+		{
+			rrotate(&dst);
+			if (*stack_name == 'a')
+				printf("rrb\n");
+			else
+				printf("rra\n");
+		}
 	}
-	else {};
-			//
+	else
+	{
+		while ((node2mv->push_cost)-- > 0)
+		{
+			rrotate(&src);
+			printf("rr%s\n", stack_name);
+		}
+		while ((node2mv->target_node->push_cost)-- > 0)
+		{
+			rotate(&dst);
+			if (*stack_name == 'a')
+				printf("rb\n");
+			else
+				printf("ra\n");
+		}
+	}
+	// pb
 }
