@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/09 20:12:41 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/09 20:25:52 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,14 @@ stack a to stack b BUT if stack_name == "b", it is vice versa*/
 /* funciton preparing the full operation name to print out during moving 
 the node up and calling the function node2top_itself() that does the move
 and prints out what is needed from rr, rrr, ra, rb, rra and rrb  */
-static void	node2top(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **),
+static void	node2top(t_stack **src, t_stack **dst, void (*r_rr)(t_stack **),
 	char *stack_name)
 {
 	t_name	*full_op_name;
 
 	full_op_name = malloc(sizeof(t_name));
 	if (!full_op_name)
-		error_exit_free_2_stacks(&src, &dst);
+		error_exit_free_2_stacks(src, dst);
 	full_op_name->op_name = NULL;
 	full_op_name->stack_name = stack_name;
 	if (r_rr == rotate)
@@ -101,8 +101,8 @@ static void	node2top(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **),
 	else
 		full_op_name->op_name = ft_strdup ("rr");
 	if (!(full_op_name->op_name))
-		error_exit_free_2_stacks(&src, &dst);
-	node2top_itself(&src, &dst, r_rr, full_op_name);
+		error_exit_free_2_stacks(src, dst);
+	node2top_itself(src, dst, r_rr, full_op_name);
 	if (full_op_name)
 	{
 		if (full_op_name->op_name)
@@ -122,9 +122,9 @@ void	move_node(t_stack **src, t_stack **dst, char *stack_name)
 	if (node2mv->above_median == node2mv->target_node->above_median)
 	{
 		if (node2mv->above_median)
-			node2top(*src, *dst, rotate, stack_name);
+			node2top(src, dst, rotate, stack_name);
 		else
-			node2top(*src, *dst, rrotate, stack_name);
+			node2top(src, dst, rrotate, stack_name);
 	}
 	else if (node2mv->above_median)
 	{ //========= new coded . need to b checked=======
