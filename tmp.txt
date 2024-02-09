@@ -1,0 +1,26 @@
+oruban@c2s4d9 push_swapDoma % ./push_swap 0 -84 44 -76 59 57 -58 -4
+pb
+pb
+rb
+oruban@c2s4d9 push_swapDoma % ./push_swap 78 67 71 36 11 -79 -64 -86
+pb
+pb
+rrb
+oruban@c2s4d9 push_swapDoma % ./push_swap -95 -31 -72 81 -83 -12 20 3
+pb
+pb
+rrb
+oruban@c2s4d9 push_swapDoma % ./push_swap 50 100 1 0 101 2 3 5
+pb
+pb
+rr
+oruban@c2s4d9 push_swapDoma % ./push_swap -9 -1 -2 2 5 -6 6 -4
+pb
+pb
+oruban@c2s4d9 push_swapDoma % ./push_swap -1 -4 -6 3 4 2 0 8
+pb
+pb
+oruban@c2s4d9 push_swapDoma % ./push_swap 9 5 7 -1 -2 -6 8 6
+pb
+pb
+rrb
