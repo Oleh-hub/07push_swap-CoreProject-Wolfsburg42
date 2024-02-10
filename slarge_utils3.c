@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/09 20:35:43 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/10 09:01:04 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	target_ini(t_stack *src, t_stack *dst)
 		while (dst)
 		{
 			if (dst->number < src->number && (!src->target_node
-					|| (dst->number > src->target_node->number))) // EXC_BAD_ACCESS (code=1, address=0xffffffffffffffff) - src->target_node
+					|| (dst->number > src->target_node->number)))
 			{
 				src->target_node = dst;
 				targeted = true;

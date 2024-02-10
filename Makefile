@@ -1,4 +1,3 @@
-# HEADER		:= push_swap.h
 NAME 		:= push_swap
 CFLAGS 		:= -Wall -Wextra -Werror
 SRCS 		:=	push_swap.c		\
@@ -6,14 +5,13 @@ SRCS 		:=	push_swap.c		\
 				sort_utils2.c	\
 				slarge_utils3.c	\
 				slarge_utils4.c \
-				slarge_utils5.c	\
+				move_nodes5.c	\
 				others99.c
 
 OBJS 		:= $(SRCS:.c=.o)
 LIB_PATH 	:= libft/
 LIB 		:= $(LIB_PATH)libft.a
 
-# $(NAME): $(OBJS) $(LIB) $(HEADER)
 $(NAME): $(OBJS) $(LIB)
 
 $(LIB):

@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/09 20:25:52 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/10 09:36:33 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,85 +78,14 @@ void	cheapest_ini(t_stack *lst)
 	cheapest_node->cheapest = true;
 }
 
-/* rr, ra, rb as well as rrr, rra, rrb to till the node to b pushed adn target 
-are on the top of both stacks 
-is PARAMETER char stack_name is for std output if == "a" the node is moved from 
-stack a to stack b BUT if stack_name == "b", it is vice versa*/
-
-/* funciton preparing the full operation name to print out during moving 
-the node up and calling the function node2top_itself() that does the move
-and prints out what is needed from rr, rrr, ra, rb, rra and rrb  */
-static void	node2top(t_stack **src, t_stack **dst, void (*r_rr)(t_stack **),
-	char *stack_name)
-{
-	t_name	*full_op_name;
-
-	full_op_name = malloc(sizeof(t_name));
-	if (!full_op_name)
-		error_exit_free_2_stacks(src, dst);
-	full_op_name->op_name = NULL;
-	full_op_name->stack_name = stack_name;
-	if (r_rr == rotate)
-		full_op_name->op_name = ft_strdup ("r");
-	else
-		full_op_name->op_name = ft_strdup ("rr");
-	if (!(full_op_name->op_name))
-		error_exit_free_2_stacks(src, dst);
-	node2top_itself(src, dst, r_rr, full_op_name);
-	if (full_op_name)
-	{
-		if (full_op_name->op_name)
-			free (full_op_name->op_name);
-		free (full_op_name);
-	}
-}
-
-/* moves the cheapest node from src inot dst using r, rr , p ... commands
-where char *stack_name is either "a" or "b" and is the name of 
-t_stack *src */
-void	move_node(t_stack **src, t_stack **dst, char *stack_name)
+/* RETURNS the pointer at the cheapest node to move */
+t_stack	*find_cheapest(t_stack *src)
 {
 	t_stack	*node2mv;
 
-	node2mv = find_cheapest(*src);
-	if (node2mv->above_median == node2mv->target_node->above_median)
-	{
-		if (node2mv->above_median)
-			node2top(src, dst, rotate, stack_name);
-		else
-			node2top(src, dst, rrotate, stack_name);
-	}
-	else if (node2mv->above_median)
-	{ //========= new coded . need to b checked=======
-		while ((node2mv->push_cost)-- > 0)
-		{
-			rotate(src);
-			printf("r%s\n", stack_name);
-		}
-		while ((node2mv->target_node->push_cost)-- > 0)
-		{
-			rrotate(dst);
-			if (*stack_name == 'a')
-				printf("rrb\n");
-			else
-				printf("rra\n");
-		}
-	}
-	else
-	{
-		while ((node2mv->push_cost)-- > 0)
-		{
-			rrotate(src);
-			printf("rr%s\n", stack_name);
-		}
-		while ((node2mv->target_node->push_cost)-- > 0)
-		{
-			rotate(dst);
-			if (*stack_name == 'a')
-				printf("rb\n");
-			else
-				printf("ra\n");
-		}
-	}
-	// pb
+	node2mv = src;
+	while (!(node2mv->cheapest))
+		node2mv = node2mv->next;
+	return (node2mv);
 }
+
