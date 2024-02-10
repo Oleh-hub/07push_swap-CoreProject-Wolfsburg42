@@ -24,3 +24,16 @@ oruban@c2s4d9 push_swapDoma % ./push_swap 9 5 7 -1 -2 -6 8 6
 pb
 pb
 rrb
+./push_swap -8 3 4 6 -2 -5 7 5 -6 -9
+pb
+pb
+pb
+pb
+pb
+rb
+pb
+rb
+pb
+ra
+sa
+stack b is not sorted properly after this..

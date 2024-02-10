@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 09:34:52 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/10 10:32:29 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/10 12:27:47 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void	node2top_itself(t_stack **src, t_stack **dst,
 are on the top of both stacks 
 is PARAMETER char stack_name is for std output if == "a" the node is moved from 
 stack a to stack b BUT if stack_name == "b", it is vice versa*/
-
 /* funciton preparing the full operation name to print out during moving 
 the node up and calling the function node2top_itself() that does the move
 and prints out what is needed from rr, rrr, ra, rb, rra and rrb  */
@@ -124,6 +123,14 @@ void	move_node(t_stack **src, t_stack **dst, char *stack_name)
 	t_stack	*node2mv;
 
 	node2mv = find_cheapest(*src);
+/* 	{ // tracing 
+		if (node2mv->number == -8)
+		{
+			ft_printf("=====move_node(), b4====="); //
+			tracing_lst(*src, "a"); 	// tracing
+			tracing_lst(*dst, "b"); 	// tracing
+		}
+	} */
 	if (node2mv->above_median == node2mv->target_node->above_median)
 	{
 		if (node2mv->above_median)
@@ -135,5 +142,9 @@ void	move_node(t_stack **src, t_stack **dst, char *stack_name)
 		move_by_rotate(src, dst, node2mv, stack_name);
 	else
 		move_by_rrotate(src, dst, node2mv, stack_name);
-	// pb
+	push(src, dst);
+	if (*stack_name == 'a')
+		printf("pb\n");
+	else
+		printf("pa\n");
 }
