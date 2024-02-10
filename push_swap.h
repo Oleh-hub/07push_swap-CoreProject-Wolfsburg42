@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:39:53 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/10 09:39:21 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/10 18:28:42 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct	s_name
 t_stack	*find_cheapest(t_stack *src);
 	
 /* Debugging functions: */
-void	tracing_t_stack_node(t_stack *a, char *name); 	// debug tracing
-void	tracing_lst(t_stack *lst, char *name);			// debug, lst tracing
+void tracing_t_stack_node(t_stack *a, char *name); // debug tracing
+void NewFunction(char *name, t_stack *a);
+void tracing_lst(t_stack *lst, char *name); // debug, lst tracing
 #endif

@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/10 12:20:12 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/10 19:21:07 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void	index_median_ini(t_stack *lst)
 		else
 			lst->above_median = false;
 		lst->cheapest = false;
+		lst->target_node = NULL;
 		lst = lst->next;
 		i++;
 	}
@@ -138,19 +139,32 @@ void	sort_large_stack(t_stack **a)
 	}
 	while (size-- > 3 && !issorted(*a))
 	{
-		/* // push(a, &b); // testing 3 in b
-		push(a, &b);			// testing
-		push(a, &b);			// testing */
 		stacks_ini(*a, b);
-		/* ft_printf("=====sort_large_stack(), b4====="); //
-		tracing_lst(*a, "a"); 	// tracing
-		tracing_lst(b, "b"); 	// tracing */
-		move_node(a, &b, "a");
-		// exit(EXIT_SUCCESS); //
+	// { //
+	// 	ft_printf("=====sort_large_stack(), after=====\n"); //
+	// 	ft_printf("===== a =====\n"); //
+	// 	tracing_lst(*a, "a"); 	// tracing
+	// 	ft_printf("===== b =====\n"); //
+	// 	tracing_lst(b, "b"); 	// tracing 
+	// }
+			move_node(a, &b, "a");
+		// { 	//tracking
+		// 	if (b->number == -2)	
+		// 	{	//tracking
+		// 		ft_printf("=====sort_large_stack(), after====="); //
+		// 		tracing_lst(*a, "a"); 	// tracing
+		// 		tracing_lst(b, "b"); 	// tracing 
+		// 		exit(EXIT_SUCCESS); //
+		// 	}
+		// }
 	}
 	sort_stack_of3(a);
-	// ft_printf("=====sort_large_stack(), after====="); //
-	// tracing_lst(*a, "a"); 	// tracing
-	// tracing_lst(b, "b"); 	// tracing 
+	// { //
+	// 	ft_printf("=====sort_large_stack(), after=====\n"); //
+	// 	ft_printf("===== a =====\n"); //
+	// 	tracing_lst(*a, "a"); 	// tracing
+	// 	ft_printf("===== b =====\n"); //
+	// 	tracing_lst(b, "b"); 	// tracing 
+	// }
 	ft_printf("sorted!\n");
 }
