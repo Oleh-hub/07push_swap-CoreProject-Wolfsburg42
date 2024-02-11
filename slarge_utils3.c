@@ -176,35 +176,32 @@ void b2a_target_ini(t_stack *src, t_stack *dst)
 Target_nodes in a are the "nearest bigger". */
 void move_stack_b2a(t_stack **a, t_stack **b)
 {
+	// { //
+	// 	ft_printf("=====move_stack_b2a(), b4=====\n"); //
+	// 	ft_printf("===== a =====\n"); //
+	// 	tracing_lst(*a, "a"); 	// tracing
+	// 	ft_printf("===== b =====\n"); //
+	// 	tracing_lst(*b, "b"); 	// tracing 
+	// }
 	while (*b)
 	{
-		{ //
-			ft_printf("=====move_stack_b2a(), b4=====\n"); //
-			ft_printf("===== a =====\n"); //
-			tracing_lst(*a, "a"); 	// tracing
-			ft_printf("===== b =====\n"); //
-			tracing_lst(*b, "b"); 	// tracing 
-		}
 		// stack_b_ini(b, *a);
-		// {
 		index_median_ini(*a);
 		index_median_ini(*b);
 		b2a_target_ini(*b, *a);
-		// 	push_cost_ini(a);
-		// 	push_cost_ini(b);
-		// 	cheapest_ini(a);
-		// }
-		{ //
-			ft_printf("=====move_stack_b2a(), after=====\n"); //
-			ft_printf("===== a =====\n"); //
-			tracing_lst(*a, "a"); 	// tracing
-			ft_printf("===== b =====\n"); //
-			tracing_lst(*b, "b"); 	// tracing 
-			exit(1);
-		}
+		push_cost_ini(*b); // since here and downwards is not checked
+		push_cost_ini(*a);
+		cheapest_ini(*b);
+		move_node(b, a, "b");
 		// move_node_b2a(&b, a);
 	}
-
+	{ //
+		ft_printf("=====move_stack_b2a(), after=====\n"); //
+		ft_printf("===== a =====\n"); //
+		tracing_lst(*a, "a"); 	// tracing
+		ft_printf("===== b =====\n"); //
+		tracing_lst(*b, "b"); 	// tracing 
+	}
 }
 
 // soritng the stak when it is larger then 3 nodes
