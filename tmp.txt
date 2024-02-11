@@ -38,5 +38,4 @@ rb
 pb
 ra
 sa
-git commit -m"b2a_target_ini() with subfunciton min_nu
-mber() finished"	
+	

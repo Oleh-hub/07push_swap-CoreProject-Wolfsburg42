@@ -189,7 +189,6 @@ void move_stack_b2a(t_stack **a, t_stack **b)
 		// {
 		index_median_ini(*a);
 		index_median_ini(*b);
-		// 	target_ini(a, b);
 		b2a_target_ini(*b, *a);
 		// 	push_cost_ini(a);
 		// 	push_cost_ini(b);
