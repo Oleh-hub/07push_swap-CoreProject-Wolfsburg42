@@ -121,6 +121,57 @@ static void	stacks_ini(t_stack *a, t_stack *b)
 	cheapest_ini(a);
 }
 
+// finds the pointer at the node with min node->number
+t_stack	*min_number(t_stack *lst)
+{
+	t_stack	*min_node;
+	long	min_number;
+
+	min_node = NULL;
+	min_number = LONG_MAX;
+	while (lst)
+	{
+		if (lst->number < min_number)
+		{
+			min_number = lst->number;
+			min_node = lst;
+		}
+		lst = lst->next;
+	}
+	return (min_node);
+}
+
+/* ini ->target_node 4 all noeds in stack b. Target_nodes in a are the 
+"nearest bigger". If the closest bigger is not found, tehn target node 
+is the 'min' value.*/
+void b2a_target_ini(t_stack *src, t_stack *dst)
+{
+	t_stack	*tmp;
+	bool	targeted;
+
+	if (!src || !dst)
+		return ;
+	tmp = dst;
+	while (src)
+	{
+		targeted = false;
+		dst = tmp;
+		while (dst)
+		{
+			if (dst->number > src->number && (!src->target_node
+					|| (dst->number < src->target_node->number)))
+			{
+				src->target_node = dst;
+				targeted = true;
+			}
+			dst = dst->next;
+		}
+		if (!targeted)
+			src->target_node = min_number(tmp);
+		src = src->next;
+	}
+}
+
 /* Moves nodes from already sorted stack b back into stack a.
 Target_nodes in a are the "nearest bigger". */
 void move_stack_b2a(t_stack **a, t_stack **b)
@@ -139,6 +190,7 @@ void move_stack_b2a(t_stack **a, t_stack **b)
 		index_median_ini(*a);
 		index_median_ini(*b);
 		// 	target_ini(a, b);
+		b2a_target_ini(*b, *a);
 		// 	push_cost_ini(a);
 		// 	push_cost_ini(b);
 		// 	cheapest_ini(a);
