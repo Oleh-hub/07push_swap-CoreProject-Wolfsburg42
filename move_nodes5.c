@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+	
 /* void node2top_itself(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **),
 	t_name *full_op_name) */
 static void	node2top_itself(t_stack **src, t_stack **dst,

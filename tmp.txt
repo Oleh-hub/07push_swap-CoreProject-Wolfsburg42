@@ -29,12 +29,13 @@ pb
 pb
 pb
 pb
+rrb
 pb
 rb
 pb
+rb
 rb
 pb
 ra
 sa
-stack b is not sorted properly after this..
 	

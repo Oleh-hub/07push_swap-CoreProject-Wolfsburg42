@@ -35,7 +35,8 @@ void	push(t_stack **src, t_stack **dst)
 	}
 }
 
-//initialisation of ->index ans ->above_median elements of the stack
+//initialisation of ->index ans ->above_median elements of the stack and
+// ->push_cost to 0, sets ->cheapest and ->target_node to false and NULL
 static void	index_median_ini(t_stack *lst)
 {
 	size_t	i;
@@ -54,6 +55,7 @@ static void	index_median_ini(t_stack *lst)
 			lst->above_median = true;
 		else
 			lst->above_median = false;
+		lst->push_cost = 0;
 		lst->cheapest = false;
 		lst->target_node = NULL;
 		lst = lst->next;
@@ -113,11 +115,45 @@ static void	stacks_ini(t_stack *a, t_stack *b)
 {
 	index_median_ini(a);
 	index_median_ini(b);
-	// target2null_ini(a);
 	target_ini(a, b);
 	push_cost_ini(a);
 	push_cost_ini(b);
 	cheapest_ini(a);
+}
+
+/* Moves nodes from already sorted stack b back into stack a.
+Target_nodes in a are the "nearest bigger". */
+void move_stack_b2a(t_stack **a, t_stack **b)
+{
+	while (*b)
+	{
+		{ //
+			ft_printf("=====move_stack_b2a(), b4=====\n"); //
+			ft_printf("===== a =====\n"); //
+			tracing_lst(*a, "a"); 	// tracing
+			ft_printf("===== b =====\n"); //
+			tracing_lst(*b, "b"); 	// tracing 
+		}
+		// stack_b_ini(b, *a);
+		// {
+		index_median_ini(*a);
+		index_median_ini(*b);
+		// 	target_ini(a, b);
+		// 	push_cost_ini(a);
+		// 	push_cost_ini(b);
+		// 	cheapest_ini(a);
+		// }
+		{ //
+			ft_printf("=====move_stack_b2a(), after=====\n"); //
+			ft_printf("===== a =====\n"); //
+			tracing_lst(*a, "a"); 	// tracing
+			ft_printf("===== b =====\n"); //
+			tracing_lst(*b, "b"); 	// tracing 
+			exit(1);
+		}
+		// move_node_b2a(&b, a);
+	}
+
 }
 
 // soritng the stak when it is larger then 3 nodes
@@ -147,7 +183,7 @@ void	sort_large_stack(t_stack **a)
 	// 	ft_printf("===== b =====\n"); //
 	// 	tracing_lst(b, "b"); 	// tracing 
 	// }
-			move_node(a, &b, "a");
+		move_node(a, &b, "a");
 		// { 	//tracking
 		// 	if (b->number == -2)	
 		// 	{	//tracking
@@ -159,6 +195,7 @@ void	sort_large_stack(t_stack **a)
 		// }
 	}
 	sort_stack_of3(a);
+	move_stack_b2a(a, &b);
 	// { //
 	// 	ft_printf("=====sort_large_stack(), after=====\n"); //
 	// 	ft_printf("===== a =====\n"); //
