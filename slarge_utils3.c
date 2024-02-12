@@ -259,12 +259,12 @@ void	sort_large_stack(t_stack **a)
 			rrotate(a);
 			printf("rra\n");
 		}
-	// { //
-	// 	ft_printf("=====sort_large_stack(), after=====\n"); //
-	// 	ft_printf("===== a =====\n"); //
-	// 	tracing_lst(*a, "a"); 	// tracing
-	// 	ft_printf("===== b =====\n"); //
-	// 	tracing_lst(b, "b"); 	// tracing 
-	// }
+	{ //
+		ft_printf("=====sort_large_stack(), after=====\n"); //
+		ft_printf("===== a =====\n"); //
+		tracing_lst(*a, "a"); 	// tracing
+		ft_printf("===== b =====\n"); //
+		tracing_lst(b, "b"); 	// tracing 
+	}
 	// ft_printf("sorted!\n");
 }
