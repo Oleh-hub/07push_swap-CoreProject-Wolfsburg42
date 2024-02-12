@@ -195,13 +195,13 @@ void move_stack_b2a(t_stack **a, t_stack **b)
 		move_node(b, a, "b");
 		// move_node_b2a(&b, a);
 	}
-	{ //
+/* 	{ //
 		ft_printf("=====move_stack_b2a(), after=====\n"); //
 		ft_printf("===== a =====\n"); //
 		tracing_lst(*a, "a"); 	// tracing
 		ft_printf("===== b =====\n"); //
 		tracing_lst(*b, "b"); 	// tracing 
-	}
+	} */
 }
 
 // soritng the stak when it is larger then 3 nodes
@@ -244,6 +244,21 @@ void	sort_large_stack(t_stack **a)
 	}
 	sort_stack_of3(a);
 	move_stack_b2a(a, &b);
+	index_median_ini(*a);
+
+	t_stack	*min_nbr = min_number(*a);
+	if (min_nbr->above_median)
+		while ((*a) != min_nbr)
+		{
+			rotate(a);
+			printf("ra\n");
+		}
+	else
+		while ((*a) != min_nbr)
+		{
+			rrotate(a);
+			printf("rra\n");
+		}
 	// { //
 	// 	ft_printf("=====sort_large_stack(), after=====\n"); //
 	// 	ft_printf("===== a =====\n"); //
@@ -251,5 +266,5 @@ void	sort_large_stack(t_stack **a)
 	// 	ft_printf("===== b =====\n"); //
 	// 	tracing_lst(b, "b"); 	// tracing 
 	// }
-	ft_printf("sorted!\n");
+	// ft_printf("sorted!\n");
 }
