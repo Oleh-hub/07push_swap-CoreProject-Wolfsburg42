@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/13 09:12:01 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/13 18:42:47 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,6 @@ void	sort_large_stack(t_stack **a)
 	sort_stack_of3(a);
 	move_stack_b2a(a, &b);
 	index_median_ini(*a);
-
 	t_stack	*min_nbr = min_number(*a);
 	if (min_nbr->above_median)
 		while ((*a) != min_nbr)

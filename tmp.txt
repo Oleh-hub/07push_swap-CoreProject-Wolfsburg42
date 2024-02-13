@@ -1,3 +1,6 @@
+valgrind --leak-check=full ./push_swap
+leaks --atExit -- ./push_swap
+
 oruban@c2s4d9 push_swapDoma % ./push_swap 0 -84 44 -76 59 57 -58 -4
 pb
 pb
