@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 09:34:52 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/10 12:27:47 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/13 09:14:20 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,15 @@ static void	move_by_rotate(t_stack **src, t_stack **dst, t_stack *node2mv,
 	while ((node2mv->push_cost)-- > 0)
 	{
 		rotate(src);
-		printf("r%s\n", stack_name);
+		ft_printf("r%s\n", stack_name);
 	}
 	while ((node2mv->target_node->push_cost)-- > 0)
 	{
 		rrotate(dst);
 		if (*stack_name == 'a')
-			printf("rrb\n");
+			ft_printf("rrb\n");
 		else
-			printf("rra\n");
+			ft_printf("rra\n");
 	}
 }
 
@@ -103,15 +103,15 @@ static void	move_by_rrotate(t_stack **src, t_stack **dst, t_stack *node2mv,
 	while ((node2mv->push_cost)-- > 0)
 	{
 		rrotate(src);
-		printf("rr%s\n", stack_name);
+		ft_printf("rr%s\n", stack_name);
 	}
 	while ((node2mv->target_node->push_cost)-- > 0)
 	{
 		rotate(dst);
 		if (*stack_name == 'a')
-			printf("rb\n");
+			ft_printf("rb\n");
 		else
-			printf("ra\n");
+			ft_printf("ra\n");
 	}
 }
 
@@ -144,7 +144,7 @@ void	move_node(t_stack **src, t_stack **dst, char *stack_name)
 		move_by_rrotate(src, dst, node2mv, stack_name);
 	push(src, dst);
 	if (*stack_name == 'a')
-		printf("pb\n");
+		ft_printf("pb\n");
 	else
-		printf("pa\n");
+		ft_printf("pa\n");
 }

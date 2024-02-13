@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:32:55 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/10 14:41:18 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/12 12:08:59 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ int	main(int ac, char **av)
 
 	chr_nbr = NULL;
 	a = NULL;
+	
 	if (1 == ac || (2 == ac && !av[1][0]))
 		return (1);
 	if (2 == ac)
@@ -129,12 +130,15 @@ int	main(int ac, char **av)
 		init_stack_a(&a, chr_nbr);
 	}
 	else
+	{
 		init_stack_a(&a, &av[1]);
+	}
 	if (!issorted(a))
 		sort_stack(&a);
 	else
 		ft_printf("stack is sorted!\n");	//
 	free_stack(&a);
+	return (0);
 }
 	// {	// tracing the stack initiation
 	// 	ft_printf("checking the stack initiation: \n");

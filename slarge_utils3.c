@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/10 19:21:07 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/13 09:12:01 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,13 +224,6 @@ void	sort_large_stack(t_stack **a)
 	while (size-- > 3 && !issorted(*a))
 	{
 		stacks_ini(*a, b);
-	// { //
-	// 	ft_printf("=====sort_large_stack(), after=====\n"); //
-	// 	ft_printf("===== a =====\n"); //
-	// 	tracing_lst(*a, "a"); 	// tracing
-	// 	ft_printf("===== b =====\n"); //
-	// 	tracing_lst(b, "b"); 	// tracing 
-	// }
 		move_node(a, &b, "a");
 		// { 	//tracking
 		// 	if (b->number == -2)	
@@ -251,20 +244,20 @@ void	sort_large_stack(t_stack **a)
 		while ((*a) != min_nbr)
 		{
 			rotate(a);
-			printf("ra\n");
+			ft_printf("ra\n");
 		}
 	else
 		while ((*a) != min_nbr)
 		{
 			rrotate(a);
-			printf("rra\n");
+			ft_printf("rra\n");
 		}
 	{ //
-		ft_printf("=====sort_large_stack(), after=====\n"); //
-		ft_printf("===== a =====\n"); //
-		tracing_lst(*a, "a"); 	// tracing
-		ft_printf("===== b =====\n"); //
-		tracing_lst(b, "b"); 	// tracing 
+		// ft_printf("=====sort_large_stack(), after=====\n"); //
+		// ft_printf("===== a =====\n"); //
+		// tracing_lst(*a, "a"); 	// tracing
+		// ft_printf("===== b =====\n"); //
+		// tracing_lst(b, "b"); 	// tracing 
 	}
 	// ft_printf("sorted!\n");
 }
