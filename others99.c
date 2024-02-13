@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:34:15 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/10 18:57:30 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/13 17:15:31 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	error_exit(t_stack **a)
 {
 	if (*a)
 		free_stack(a);
-	ft_printf("Error\n");
+	// ft_printf("Error\n");
+	write(2, "Error\n", 6);
 	exit(1);
 }
 
