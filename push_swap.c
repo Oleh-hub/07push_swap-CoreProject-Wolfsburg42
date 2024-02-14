@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:32:55 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/14 09:22:43 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/14 16:04:36 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ int	main(int ac, char **av)
 {
 	char		**chr_nbr;
 	t_stack		*a;
+	size_t		i;
 
 	chr_nbr = NULL;
 	a = NULL;
@@ -135,6 +136,10 @@ int	main(int ac, char **av)
 		if (!chr_nbr)
 			return (write(2, "Error\n", 6), 1);
 		init_stack_a(&a, chr_nbr);
+		i = -1;
+		while (chr_nbr[++i])
+			free(chr_nbr[i]);
+		free(chr_nbr);
 	}
 	else
 	{

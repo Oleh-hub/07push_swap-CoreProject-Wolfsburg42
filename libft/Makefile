@@ -52,7 +52,7 @@ SRCS_BONUS	:=	ft_lstnew.c				\
 
 OBJS		:=	$(SRCS:.c=.o)
 OBJS_BONUS	:=	$(SRCS_BONUS:.c=.o)
-CFLAGS		:=  -Wall -Wextra -Werror
+CFLAGS		:=  -Wall -Wextra -Werror -g
 CC			:=	gcc
 
 .PHONY: all clean fclean re bonus

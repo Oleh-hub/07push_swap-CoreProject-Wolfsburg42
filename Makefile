@@ -1,5 +1,5 @@
 NAME 		:= push_swap
-CFLAGS 		:= -Wall -Wextra -Werror
+CFLAGS 		:= -Wall -Wextra -Werror -g
 SRCS 		:=	push_swap.c		\
 				stack_utils1.c	\
 				sort_utils2.c	\
@@ -15,9 +15,13 @@ LIB 		:= $(LIB_PATH)libft.a
 $(NAME): $(OBJS) $(LIB)
 
 $(LIB):
-	make -C $(LIB_PATH) all bonus clean
+	make -C $(LIB_PATH) all bonus
+# make -C $(LIB_PATH) all bonus clean
 
-all: $(NAME) $(HEAD)
+all: $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
