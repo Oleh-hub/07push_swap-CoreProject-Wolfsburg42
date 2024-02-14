@@ -6,12 +6,12 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 09:34:52 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/13 09:14:20 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/14 09:21:08 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-	
+
 /* void node2top_itself(t_stack *src, t_stack *dst, void (*r_rr)(t_stack **),
 	t_name *full_op_name) */
 static void	node2top_itself(t_stack **src, t_stack **dst,
@@ -123,14 +123,6 @@ void	move_node(t_stack **src, t_stack **dst, char *stack_name)
 	t_stack	*node2mv;
 
 	node2mv = find_cheapest(*src);
-/* 	{ // tracing 
-		if (node2mv->number == -8)
-		{
-			ft_printf("=====move_node(), b4====="); //
-			tracing_lst(*src, "a"); 	// tracing
-			tracing_lst(*dst, "b"); 	// tracing
-		}
-	} */
 	if (node2mv->above_median == node2mv->target_node->above_median)
 	{
 		if (node2mv->above_median)

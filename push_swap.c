@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:32:55 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/13 21:01:54 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/14 09:22:43 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,18 @@ static void	init_stack_a(t_stack **a, char **str)
 	while (str[i])
 	{
 		if (!syntax(str[i]))
+		{
+			// i = 0;
+			// while (str[i++])
+			// 	free(str[i]);
+			// free(str);
 			error_exit(a);
+		}
 		nbr = ft_atol(str[i]);
 		if (nbr < INT_MIN || nbr > INT_MAX)
+		{
 			error_exit(a);
+		}
 		tmp = *a;
 		while (tmp)
 		{
@@ -125,7 +133,7 @@ int	main(int ac, char **av)
 	{
 		chr_nbr = ft_split(av[1], ' ');
 		if (!chr_nbr)
-			return (ft_printf("Error\n"), 1);
+			return (write(2, "Error\n", 6), 1);
 		init_stack_a(&a, chr_nbr);
 	}
 	else
@@ -134,23 +142,10 @@ int	main(int ac, char **av)
 	}
 	if (!issorted(a))
 		sort_stack(&a);
-	/* else
-		ft_printf("stack is sorted!\n");	// */
 	free_stack(&a);
 	return (0);
 }
-	// {	// tracing the stack initiation
-	// 	ft_printf("checking the stack initiation: \n");
-	// 	ft_printf("%p\n", a);
-	// 	tmp = a;
-	// 	while (tmp)
-	// 	{
-	// 		ft_printf("%i ", tmp->number);
-	// 		tmp = tmp->next;
-	// 	}
-	// 	ft_printf(" \n");
-	// 	ft_printf("%p\n", a);
-	// }
+
 /* ft_atoi recoded for long int. Since any number that are beyand the limits of
 LONG_MIN and LONG_MAX will be false converted into long time. We do not care 
 because if the requried int will be always correctly converted */ 
