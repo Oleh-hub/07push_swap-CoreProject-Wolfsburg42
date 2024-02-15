@@ -1,3 +1,5 @@
+# valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./push_swap hello\ world
+
 NAME 		:= push_swap
 CFLAGS 		:= -Wall -Wextra -Werror -g
 SRCS 		:=	push_swap.c		\

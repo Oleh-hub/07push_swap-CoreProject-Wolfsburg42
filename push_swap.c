@@ -6,9 +6,12 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:32:55 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/14 16:04:36 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/16 00:01:58 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all 
+./push_swap hello\ world */
 
 #include "push_swap.h"
 #include <stdio.h>
@@ -79,6 +82,19 @@ static bool	syntax(char *str)
 	return (true);
 }
 
+static void	free_after_ft_split(char **str)
+{
+	size_t	i;
+
+	/* i = -1;
+	while (str[++i])
+		printf("%s\n", str[i]); */
+	i = -1;
+	while (str[++i])
+		free(str[i]);
+	free(str);
+}
+
 /* shell initialize the list of structures called stack with int numbers
 that should be sorted later on. Step by step:
 1. checking the syntax of input format -/+NN(N) is only allowed 
@@ -86,7 +102,7 @@ that should be sorted later on. Step by step:
 3. checking if the number is not a duplicate
 parameters: a - the pointer at the stack pointer, str - the pointer at the
 array of srrings got by ft_split()*/
-static void	init_stack_a(t_stack **a, char **str)
+static void	init_stack_a(t_stack **a, char **str, int ac)
 {
 	size_t	i;
 	long	nbr;
@@ -97,22 +113,26 @@ static void	init_stack_a(t_stack **a, char **str)
 	{
 		if (!syntax(str[i]))
 		{
-			// i = 0;
-			// while (str[i++])
-			// 	free(str[i]);
-			// free(str);
+			if (ac == 2)
+				free_after_ft_split(str);
 			error_exit(a);
 		}
 		nbr = ft_atol(str[i]);
 		if (nbr < INT_MIN || nbr > INT_MAX)
 		{
+			if (ac == 2)
+				free_after_ft_split(str);
 			error_exit(a);
 		}
 		tmp = *a;
 		while (tmp)
 		{
 			if (tmp->number == nbr)
+			{
+				if (ac == 2)
+					free_after_ft_split(str);
 				error_exit(a);
+			}
 			tmp = tmp->next;
 		}
 		addnew_stacknode(a, (int) nbr);
@@ -124,7 +144,6 @@ int	main(int ac, char **av)
 {
 	char		**chr_nbr;
 	t_stack		*a;
-	size_t		i;
 
 	chr_nbr = NULL;
 	a = NULL;
@@ -135,15 +154,12 @@ int	main(int ac, char **av)
 		chr_nbr = ft_split(av[1], ' ');
 		if (!chr_nbr)
 			return (write(2, "Error\n", 6), 1);
-		init_stack_a(&a, chr_nbr);
-		i = -1;
-		while (chr_nbr[++i])
-			free(chr_nbr[i]);
-		free(chr_nbr);
+		init_stack_a(&a, chr_nbr, ac);
+		free_after_ft_split(chr_nbr);
 	}
 	else
 	{
-		init_stack_a(&a, &av[1]);
+		init_stack_a(&a, &av[1], ac);
 	}
 	if (!issorted(a))
 		sort_stack(&a);

@@ -24,8 +24,11 @@
 		// "args": ["50 100 1 0 101 2 3 5"],
 		// "args": ["-95 -31 -72 81 -83 -12 20 3"], // in 2 stacks by 4 numbers 1 rrb needed
 		// "args": ["1"],
-		"args": ["2147483647"],
-		// "args": [""],
+		// "args": ["2147483647"],
+		// "args": ["hello world"],
+		// "args": ["1 2 3 456	42!	13	4684"],
+		"args": ["1 2 3-"],
+		// "args": [""],	
 		"cwd": "${workspaceFolder}",
 		"stopAtEntry": false,
 		"externalConsole": false,

@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:34:15 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/14 09:18:52 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/15 23:54:51 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	tracing_lst(t_stack *lst, char *name)
 {
 	if (!lst)
 	{
-		printf("list %s = NULL", name);
+		ft_printf("list %s = NULL", name);
 		return ;
 	}
 	while (lst)
