@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/13 18:42:47 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/16 10:14:25 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,32 +176,16 @@ void b2a_target_ini(t_stack *src, t_stack *dst)
 Target_nodes in a are the "nearest bigger". */
 void move_stack_b2a(t_stack **a, t_stack **b)
 {
-	// { //
-	// 	ft_printf("=====move_stack_b2a(), b4=====\n"); //
-	// 	ft_printf("===== a =====\n"); //
-	// 	tracing_lst(*a, "a"); 	// tracing
-	// 	ft_printf("===== b =====\n"); //
-	// 	tracing_lst(*b, "b"); 	// tracing 
-	// }
 	while (*b)
 	{
-		// stack_b_ini(b, *a);
 		index_median_ini(*a);
 		index_median_ini(*b);
 		b2a_target_ini(*b, *a);
-		push_cost_ini(*b); // since here and downwards is not checked
+		push_cost_ini(*b);
 		push_cost_ini(*a);
 		cheapest_ini(*b);
 		move_node(b, a, "b");
-		// move_node_b2a(&b, a);
 	}
-/* 	{ //
-		ft_printf("=====move_stack_b2a(), after=====\n"); //
-		ft_printf("===== a =====\n"); //
-		tracing_lst(*a, "a"); 	// tracing
-		ft_printf("===== b =====\n"); //
-		tracing_lst(*b, "b"); 	// tracing 
-	} */
 }
 
 // soritng the stak when it is larger then 3 nodes
@@ -225,15 +209,6 @@ void	sort_large_stack(t_stack **a)
 	{
 		stacks_ini(*a, b);
 		move_node(a, &b, "a");
-		// { 	//tracking
-		// 	if (b->number == -2)	
-		// 	{	//tracking
-		// 		ft_printf("=====sort_large_stack(), after====="); //
-		// 		tracing_lst(*a, "a"); 	// tracing
-		// 		tracing_lst(b, "b"); 	// tracing 
-		// 		exit(EXIT_SUCCESS); //
-		// 	}
-		// }
 	}
 	sort_stack_of3(a);
 	move_stack_b2a(a, &b);
@@ -251,12 +226,4 @@ void	sort_large_stack(t_stack **a)
 			rrotate(a);
 			ft_printf("rra\n");
 		}
-	{ //
-		// ft_printf("=====sort_large_stack(), after=====\n"); //
-		// ft_printf("===== a =====\n"); //
-		// tracing_lst(*a, "a"); 	// tracing
-		// ft_printf("===== b =====\n"); //
-		// tracing_lst(b, "b"); 	// tracing 
-	}
-	// ft_printf("sorted!\n");
 }

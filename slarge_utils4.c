@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/10 09:36:33 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/16 10:15:16 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,3 @@ t_stack	*find_cheapest(t_stack *src)
 		node2mv = node2mv->next;
 	return (node2mv);
 }
-

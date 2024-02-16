@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:39:53 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/10 18:28:42 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/16 10:10:48 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdbool.h>
 
 // structure for stack elements 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	int				number;
 	int				index;
@@ -28,14 +28,14 @@ typedef struct	s_stack
 	struct s_stack	*target_node;
 	struct s_stack	*next;
 	struct s_stack	*previous;
-} 					t_stack;
+}					t_stack;
 /* target_node  - for an element of stack a is the nearest smallest in 
 stack b and for an element in b - the nearest biggest in stack a.
 If the nearest is not found: target_node is the max and the min accodingly 
 ===
 above_median - if a target_node is above median "rotate" ra or rb should be
 executed, if not - "reverse rotate" rra or rrb*/
-void 	free_stack(t_stack **a);
+void	free_stack(t_stack **a);
 void	error_exit(t_stack **a);
 void	error_exit_free_2_stacks(t_stack **a, t_stack **b);
 bool	issorted(t_stack *stack);
@@ -53,7 +53,7 @@ void	move_node(t_stack **src, t_stack **dst, char *stack); /* char stack is
  just the 'from' stack name if it is a ´pb´ follows */
 
 /* structure and functions using it */
-typedef struct	s_name
+typedef struct s_name
 {
 	char	*op_name;
 	char	*stack_name;
@@ -63,9 +63,9 @@ typedef struct	s_name
 /* void node2top_itself(t_stack **src, t_stack **dst, void (*r_rr)(t_stack **),
 	t_name *full_op_name); */
 t_stack	*find_cheapest(t_stack *src);
-	
+
 /* Debugging functions: */
-void tracing_t_stack_node(t_stack *a, char *name); // debug tracing
-void NewFunction(char *name, t_stack *a);
-void tracing_lst(t_stack *lst, char *name); // debug, lst tracing
+void	tracing_t_stack_node(t_stack *a, char *name); // debug tracing
+void	NewFunction(char *name, t_stack *a);
+void	tracing_lst(t_stack *lst, char *name); // debug, lst tracing
 #endif
