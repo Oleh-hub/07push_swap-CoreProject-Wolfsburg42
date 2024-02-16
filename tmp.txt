@@ -1,3 +1,7 @@
+The next 2 lines should be treated differently with "" as an "Error"
+./push_swap
+./push_swap ""
+
 valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all ./push_swap hello\ world
 ==7972== Memcheck, a memory error detector
 ==7972== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.

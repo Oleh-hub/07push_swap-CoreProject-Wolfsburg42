@@ -6,12 +6,13 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:32:55 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/16 00:01:58 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/16 09:59:48 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all 
-./push_swap hello\ world */
+./push_swap hello\ world 
+https://github.com/LeoFu9487/push_swap_tester */
 
 #include "push_swap.h"
 #include <stdio.h>
@@ -86,9 +87,6 @@ static void	free_after_ft_split(char **str)
 {
 	size_t	i;
 
-	/* i = -1;
-	while (str[++i])
-		printf("%s\n", str[i]); */
 	i = -1;
 	while (str[++i])
 		free(str[i]);
@@ -108,8 +106,8 @@ static void	init_stack_a(t_stack **a, char **str, int ac)
 	long	nbr;
 	t_stack	*tmp;
 
-	i = 0;
-	while (str[i])
+	i = -1;
+	while (str[++i])
 	{
 		if (!syntax(str[i]))
 		{
@@ -136,7 +134,6 @@ static void	init_stack_a(t_stack **a, char **str, int ac)
 			tmp = tmp->next;
 		}
 		addnew_stacknode(a, (int) nbr);
-		i++;
 	}
 }
 
