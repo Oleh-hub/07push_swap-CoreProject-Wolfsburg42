@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 09:48:03 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/16 10:14:25 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/16 17:06:33 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	push(t_stack **src, t_stack **dst)
 
 //initialisation of ->index ans ->above_median elements of the stack and
 // ->push_cost to 0, sets ->cheapest and ->target_node to false and NULL
-static void	index_median_ini(t_stack *lst)
+void	index_median_ini(t_stack *lst)
 {
 	size_t	i;
 	size_t	size;
@@ -111,7 +111,7 @@ static void	target_ini(t_stack *src, t_stack *dst)
 sorting (moving the correct element to another stack).
 wher epush_cost_ini assingns ->push_cost with the number of r or rr needed
 to get to the top of the stack */
-static void	stacks_ini(t_stack *a, t_stack *b)
+void	stacks_ini(t_stack *a, t_stack *b)
 {
 	index_median_ini(a);
 	index_median_ini(b);
@@ -121,30 +121,10 @@ static void	stacks_ini(t_stack *a, t_stack *b)
 	cheapest_ini(a);
 }
 
-// finds the pointer at the node with min node->number
-t_stack	*min_number(t_stack *lst)
-{
-	t_stack	*min_node;
-	long	min_number;
-
-	min_node = NULL;
-	min_number = LONG_MAX;
-	while (lst)
-	{
-		if (lst->number < min_number)
-		{
-			min_number = lst->number;
-			min_node = lst;
-		}
-		lst = lst->next;
-	}
-	return (min_node);
-}
-
 /* ini ->target_node 4 all noeds in stack b. Target_nodes in a are the 
 "nearest bigger". If the closest bigger is not found, tehn target node 
 is the 'min' value.*/
-void b2a_target_ini(t_stack *src, t_stack *dst)
+void	b2a_target_ini(t_stack *src, t_stack *dst)
 {
 	t_stack	*tmp;
 	bool	targeted;
@@ -170,60 +150,4 @@ void b2a_target_ini(t_stack *src, t_stack *dst)
 			src->target_node = min_number(tmp);
 		src = src->next;
 	}
-}
-
-/* Moves nodes from already sorted stack b back into stack a.
-Target_nodes in a are the "nearest bigger". */
-void move_stack_b2a(t_stack **a, t_stack **b)
-{
-	while (*b)
-	{
-		index_median_ini(*a);
-		index_median_ini(*b);
-		b2a_target_ini(*b, *a);
-		push_cost_ini(*b);
-		push_cost_ini(*a);
-		cheapest_ini(*b);
-		move_node(b, a, "b");
-	}
-}
-
-// soritng the stak when it is larger then 3 nodes
-void	sort_large_stack(t_stack **a)
-{
-	size_t		size;
-	t_stack		*b;
-	int			i;
-
-	b = NULL;
-	size = 0;
-	i = 2;
-	size = stack_size(*a);
-	while (size > 3 && !issorted(*a) && i--)
-	{
-		push(a, &b);
-		ft_printf("pb\n");
-		size--;
-	}
-	while (size-- > 3 && !issorted(*a))
-	{
-		stacks_ini(*a, b);
-		move_node(a, &b, "a");
-	}
-	sort_stack_of3(a);
-	move_stack_b2a(a, &b);
-	index_median_ini(*a);
-	t_stack	*min_nbr = min_number(*a);
-	if (min_nbr->above_median)
-		while ((*a) != min_nbr)
-		{
-			rotate(a);
-			ft_printf("ra\n");
-		}
-	else
-		while ((*a) != min_nbr)
-		{
-			rrotate(a);
-			ft_printf("rra\n");
-		}
 }

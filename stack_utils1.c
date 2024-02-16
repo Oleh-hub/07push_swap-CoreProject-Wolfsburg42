@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 10:48:49 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/16 10:15:50 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/16 16:41:57 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,22 @@ bool	issorted(t_stack *stack)
 		stack = stack->next;
 	}
 	return (true);
+}
+
+// frees memory allocated for arg
+void	free_after_ft_split(char **str)
+{
+	size_t	i;
+
+	i = -1;
+	while (str[++i])
+		free(str[i]);
+	free(str);
+}
+
+void	error_during_parsing(char **str, t_stack **a, int ac)
+{
+	if (ac == 2)
+		free_after_ft_split(str);
+	error_exit(a);
 }

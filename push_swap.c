@@ -6,13 +6,15 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:32:55 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/16 09:59:48 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/16 16:40:27 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all 
 ./push_swap hello\ world 
-https://github.com/LeoFu9487/push_swap_tester */
+https://github.com/gemartin99/Push-Swap-Tester
+https://github.com/LeoFu9487/push_swap_tester 
+*/
 
 #include "push_swap.h"
 #include <stdio.h>
@@ -83,16 +85,6 @@ static bool	syntax(char *str)
 	return (true);
 }
 
-static void	free_after_ft_split(char **str)
-{
-	size_t	i;
-
-	i = -1;
-	while (str[++i])
-		free(str[i]);
-	free(str);
-}
-
 /* shell initialize the list of structures called stack with int numbers
 that should be sorted later on. Step by step:
 1. checking the syntax of input format -/+NN(N) is only allowed 
@@ -110,27 +102,15 @@ static void	init_stack_a(t_stack **a, char **str, int ac)
 	while (str[++i])
 	{
 		if (!syntax(str[i]))
-		{
-			if (ac == 2)
-				free_after_ft_split(str);
-			error_exit(a);
-		}
+			error_during_parsing(str, a, ac);
 		nbr = ft_atol(str[i]);
 		if (nbr < INT_MIN || nbr > INT_MAX)
-		{
-			if (ac == 2)
-				free_after_ft_split(str);
-			error_exit(a);
-		}
+			error_during_parsing(str, a, ac);
 		tmp = *a;
 		while (tmp)
 		{
 			if (tmp->number == nbr)
-			{
-				if (ac == 2)
-					free_after_ft_split(str);
-				error_exit(a);
-			}
+				error_during_parsing(str, a, ac);
 			tmp = tmp->next;
 		}
 		addnew_stacknode(a, (int) nbr);
@@ -144,8 +124,10 @@ int	main(int ac, char **av)
 
 	chr_nbr = NULL;
 	a = NULL;
-	if (1 == ac || (2 == ac && !av[1][0]))
+	if (1 == ac)
 		return (1);
+	if (2 == ac && !av[1][0])
+		return (write(2, "Error\n", 6), 1);
 	if (2 == ac)
 	{
 		chr_nbr = ft_split(av[1], ' ');
@@ -155,9 +137,7 @@ int	main(int ac, char **av)
 		free_after_ft_split(chr_nbr);
 	}
 	else
-	{
 		init_stack_a(&a, &av[1], ac);
-	}
 	if (!issorted(a))
 		sort_stack(&a);
 	free_stack(&a);

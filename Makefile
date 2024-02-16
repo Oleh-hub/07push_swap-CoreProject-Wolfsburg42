@@ -8,6 +8,7 @@ SRCS 		:=	push_swap.c		\
 				slarge_utils3.c	\
 				slarge_utils4.c \
 				move_nodes5.c	\
+				stackb6.c		\
 				others99.c
 
 OBJS 		:= $(SRCS:.c=.o)

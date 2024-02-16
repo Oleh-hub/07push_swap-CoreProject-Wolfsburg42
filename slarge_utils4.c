@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 14:10:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/16 10:15:16 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/16 16:47:28 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,24 @@ t_stack	*find_cheapest(t_stack *src)
 	while (!(node2mv->cheapest))
 		node2mv = node2mv->next;
 	return (node2mv);
+}
+
+// finds the pointer at the node with min node->number
+t_stack	*min_number(t_stack *lst)
+{
+	t_stack	*min_node;
+	long	min_number;
+
+	min_node = NULL;
+	min_number = LONG_MAX;
+	while (lst)
+	{
+		if (lst->number < min_number)
+		{
+			min_number = lst->number;
+			min_node = lst;
+		}
+		lst = lst->next;
+	}
+	return (min_node);
 }
