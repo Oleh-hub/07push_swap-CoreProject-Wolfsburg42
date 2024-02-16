@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:39:53 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/16 17:16:06 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/16 17:50:45 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	error_during_parsing(char **str, t_stack **a, int ac);
 
 /* Moves nodes from already sorted stack b back into stack a.
 Target_nodes in a are the "nearest bigger". */
-void	move_stack_b2a(t_stack **a, t_stack **b);
+// void	move_stack_b2a(t_stack **a, t_stack **b);
 // soritng the stak when it is larger then 3 nodes
 void	sort_large_stack(t_stack **a);
 void	stacks_ini(t_stack *a, t_stack *b);
