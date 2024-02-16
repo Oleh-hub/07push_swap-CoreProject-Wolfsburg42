@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 19:39:53 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/16 17:06:44 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/16 17:16:06 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,5 @@ void	index_median_ini(t_stack *lst);
 
 /* Debugging functions: */
 void	tracing_t_stack_node(t_stack *a, char *name); // debug tracing
-void	NewFunction(char *name, t_stack *a);
 void	tracing_lst(t_stack *lst, char *name); // debug, lst tracing
 #endif

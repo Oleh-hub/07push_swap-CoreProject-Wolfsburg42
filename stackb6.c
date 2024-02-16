@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:53:04 by oruban            #+#    #+#             */
-/*   Updated: 2024/02/16 16:56:07 by oruban           ###   ########.fr       */
+/*   Updated: 2024/02/16 17:27:52 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	sort_large_stack(t_stack **a)
 	size_t		size;
 	t_stack		*b;
 	int			i;
-    t_stack     *min_nbr;
+	t_stack		*min_nbr;
 
 	b = NULL;
 	size = 0;
